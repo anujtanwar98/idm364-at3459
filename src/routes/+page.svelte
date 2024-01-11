@@ -84,9 +84,17 @@
 <div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">Scroll Me</div>
 
 <style>
-    .flex-wrap {
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+  }
+
+
+  .flex-wrap {
   flex-wrap: wrap;
-}
+  }
 .bg_blue {
     background: #2196F3;
 }
