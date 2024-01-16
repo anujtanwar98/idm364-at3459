@@ -73,13 +73,17 @@
     controls.maxPolarAngle = Math.PI;
 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) {
-        // Disable zoom for mobile devices
-        controls.enableZoom = false;
-      } else {
-        // enable zoom for desktop
-        controls.enableZoom = true;
-      }
+    if (isMobile) {
+      // Disable zoom and orbit controls for mobile devices
+      controls.enableZoom = false;
+      controls.enableRotate = false;
+      controls.enablePan = false;
+    } else {
+      // Enable zoom and other controls for non-mobile devices
+      controls.enableZoom = true;
+      controls.enableRotate = true;
+      controls.enablePan = true;
+    }
 
     // Animation loop
     const animate = () => {
