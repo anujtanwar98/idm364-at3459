@@ -48,7 +48,15 @@
     loader.load('/applevisionpro.glb', (gltf) => {
       console.log("Model loaded", gltf);
       model = gltf.scene; 
-      model.scale.set(150, 150, 150); 
+      // Detect if the user is on a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Set smaller scale for mobile devices
+        model.scale.set(80, 80, 80);
+      } else {
+        // Set larger scale for non-mobile devices
+        model.scale.set(150, 150, 150);
+      }
       scene.add(model);
     }, undefined, (error) => {
       console.error('An error happened', error);
@@ -63,6 +71,15 @@
     controls.zoomSpeed = 10;
     controls.screenSpacePanning = false;
     controls.maxPolarAngle = Math.PI;
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Disable zoom for mobile devices
+        controls.enableZoom = false;
+      } else {
+        // enable zoom for desktop
+        controls.enableZoom = true;
+      }
 
     // Animation loop
     const animate = () => {
