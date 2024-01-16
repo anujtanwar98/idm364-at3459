@@ -45,7 +45,7 @@
   
       // GLTF Loader
     const loader = new GLTFLoader();
-    loader.load('/applevisionpro.glb', (gltf) => {
+    loader.load('/freeteslatequila.glb', (gltf) => {
       console.log("Model loaded", gltf);
       model = gltf.scene; 
       // Detect if the user is on a mobile device
