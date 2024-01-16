@@ -84,7 +84,9 @@
   </div>
 </div>
 
-<div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">Scroll Me</div>
+<div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">
+  View All Products
+</div>
 
 <style>
 *{
@@ -201,7 +203,7 @@
 }
 
 .blank_row {
-  background:   url(https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705003449/svelte%20app/Hot_Wheels_car%20future.png) no-repeat;
+  background:   url(https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705368083/svelte%20app/e-commerce_eaqe0m.jpg) no-repeat;
   margin: 0;
   font-size: 3rem;
   position: relative;
