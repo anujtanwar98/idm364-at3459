@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
-
+	import mylogo from '$lib/images/mylogo.png';
 	
 
 </script>
@@ -10,7 +10,7 @@
 <header>
 	<nav>
 		<div class="logo">
-            <img src="logo.svg" alt="Logo Image">
+            <img src={mylogo} alt="Logo Image">
         </div>
 		<div class="hamburger">
             <div class="line1"></div>
