@@ -78,11 +78,6 @@
       controls.enableZoom = false;
       controls.enableRotate = false;
       controls.enablePan = false;
-
-      // Allow touch scrolling over the 3D canvas
-      container.addEventListener('touchstart', handleTouch, { passive: true });
-      container.addEventListener('touchmove', handleTouch, { passive: true });
-      container.addEventListener('touchend', handleTouch, { passive: true });
     } else {
       // Enable zoom and other controls for non-mobile devices
       controls.enableZoom = true;
