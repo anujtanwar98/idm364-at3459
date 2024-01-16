@@ -41,40 +41,40 @@
       <div class="text w-50 d-flex justify-content-center align-items-center h-100">
         <h2>Product 1</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100">
-        <img src="https://images.unsplash.com/photo-1587181972975-ff4ecddeb30b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGhvdHdoZWVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product1">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343306/svelte%20app/iPhone15Pro-NaturalT2_y1eatk.png" alt="">
       </div>
     </div>
     <div class="items  bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
       <div class="text w-50 d-flex justify-content-center align-items-center h-100">
         <h2>Product 2</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100">
-        <img src="https://images.unsplash.com/photo-1572434800306-2fce3c108eaf?q=80&w=1527&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product2">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
     <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
       <div class="text w-50 d-flex justify-content-center align-items-center h-100">
         <h2>Product 3</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100">
-        <img src="https://images.unsplash.com/photo-1642374386978-9d5befc7af96?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product3">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
     <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
       <div class="text w-50 d-flex justify-content-center align-items-center h-100">
         <h2>Product 4</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100">
-        <img src="https://images.unsplash.com/photo-1625687095627-70abbf6cf29b?q=80&w=1340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product4">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
     <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
       <div class="text w-50 d-flex justify-content-center align-items-center h-100">
         <h2>Product 5</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100">
-        <img src="https://images.unsplash.com/photo-1620976714520-5515df9aa02d?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product5">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
 
@@ -95,8 +95,11 @@
   .flex-wrap {
   flex-wrap: wrap;
   }
+  h2 {
+  color: #fff;
+  }
 .bg_blue {
-    background: #2196F3;
+    background: #000000;
 }
 .d-flex {
   display: flex;
@@ -121,10 +124,40 @@
 .w-50 {
   width: 50%;
 }
+.product1 {
+    background-color: #7393B3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product2 {
+    background-color: #B2BEB5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product3 {
+    background-color: #36454F; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product4 {
+    background-color: #A9A9A9; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .product5 {
+    background-color: #6082B6; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .Image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 80%;
+    max-height: 80vh;
+  object-fit: contain;
 }
 
 .ani5 {
