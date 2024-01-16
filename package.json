@@ -25,6 +25,7 @@
 	"type": "module",
 	"dependencies": {
 		"gsap": "^3.12.4",
-		"scrollmagic": "^2.0.8"
+		"scrollmagic": "^2.0.8",
+		"three": "^0.160.0"
 	}
 }

@@ -4,6 +4,7 @@
 </svelte:head>
 <script>
   import { onMount } from 'svelte';
+  import GLTFModel from './Threed.svelte';
   // import ScrollMagic from 'scrollmagic';
 
   onMount(async () => {
@@ -32,8 +33,10 @@
   }
   });
 </script>
-
-<div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">Scroll Me</div>
+<div class="my-3d-file">
+  <GLTFModel />
+</div>
+<!-- <div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">Scroll Me</div> -->
 <div class="section_box  flex-wrap w-100 animation_5" style="padding: 0; height: auto;">
   <!-- <h2>Trigger Image On Scroll</h2> -->
   <div class="boxes w-100 flex-wrap animation_box" style="overflow: visible;">
@@ -206,5 +209,13 @@
   padding: 20px 0;
   background-size: cover;
   background-position: center;
+}
+
+.my-3d-file{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #36454F;
 }
 </style>
