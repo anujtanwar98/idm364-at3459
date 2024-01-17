@@ -45,7 +45,7 @@
         <h2>Product 1</h2>
       </div>
       <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product1">
-        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343306/svelte%20app/iPhone15Pro-NaturalT2_y1eatk.png" alt="">
+        <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png" alt="">
       </div>
     </div>
     <div class="items  bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
@@ -218,6 +218,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #36454F;
+  background-color: #a0cbe8;
 }
 </style>
