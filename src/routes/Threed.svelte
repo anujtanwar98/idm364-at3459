@@ -23,12 +23,12 @@
       scene.add(hemiLight);
   
       // Directional light from the front
-      const frontLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      const frontLight = new THREE.DirectionalLight(0xffffff, 1);
       frontLight.position.set(0, 0, 1);
       scene.add(frontLight);
   
       // Directional light from the back
-      const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      const backLight = new THREE.DirectionalLight(0xffffff, 1);
       backLight.position.set(0, 0, -1);
       scene.add(backLight);
   
@@ -38,24 +38,34 @@
       scene.add(leftLight);
   
       // Directional light from the right
-      const rightLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      const rightLight = new THREE.DirectionalLight(0xffffff, 1);
       rightLight.position.set(1, 0, 0);
       scene.add(rightLight);
+
+      // Directional light from the bottom light
+      const bottomLight = new THREE.DirectionalLight(0xffffff, 0.3);
+      bottomLight.position.set(0, -1, 0); // Positioning it below the scene
+      scene.add(bottomLight);
+
+      // Directional light from the bottom light
+      const topLight = new THREE.DirectionalLight(0xffffff , 1);
+      topLight.position.set(0, 1, 0); // Positioning it above the scene
+      scene.add(topLight);
   
   
       // GLTF Loader
     const loader = new GLTFLoader();
-    loader.load('/freeteslatequila.glb', (gltf) => {
+    loader.load('/applemacstudio.glb', (gltf) => {
       console.log("Model loaded", gltf);
       model = gltf.scene; 
       // Detect if the user is on a mobile device
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
         // Set smaller scale for mobile devices
-        model.scale.set(80, 80, 80);
+        model.scale.set(15, 15, 15);
       } else {
         // Set larger scale for non-mobile devices
-        model.scale.set(150, 150, 150);
+        model.scale.set(40, 40, 40);
       }
       scene.add(model);
     }, undefined, (error) => {
