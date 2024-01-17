@@ -14,7 +14,7 @@
       // WebGLRenderer with alpha set to true for a transparent background
       const renderer = new THREE.WebGLRenderer({ alpha: false });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setClearColor(0x36454F); // Set the background color to salmon
+      renderer.setClearColor(0x000000); // Set the background color
       container.appendChild(renderer.domElement);
   
       // Lighting
@@ -81,6 +81,9 @@
     controls.zoomSpeed = 10;
     controls.screenSpacePanning = false;
     controls.maxPolarAngle = Math.PI;
+
+    controls.minDistance = 100; // Minimum zoom distance change according based on object
+    controls.maxDistance = 150; // Maximum zoom distance change according based on object
 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
