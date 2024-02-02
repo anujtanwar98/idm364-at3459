@@ -6,207 +6,185 @@
 </script>
 
 <header>
-	<nav>
-		<div class="logo">
-            <img src={mylogo} alt="Logo Image">
-			<!-- Foxtronics -->
-        </div>
-		<div class="hamburger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-		<ul class="nav-links">
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/allProducts' ? 'page' : undefined}>
-				<a href="/allProducts">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
+	<nav class="navbar navbar-expand-lg my-mob-nav" style="background-color:#000000">
+		<div class="container-fluid">
+		  <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="toggler-icon top-bar"></span>
+			<span class="toggler-icon middle-bar"></span>
+			<span class="toggler-icon bottom-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="/">
+			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
+		  </a>
+		  <a href="#cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
+		  </a>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/">Home</a>
+				</li>
+				<li class="nav-item" aria-current={$page.url.pathname === '/allProducts' ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/allProducts">All Products</a>
+				</li>
+				<li class="nav-item" aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/sverdle">About</a>
+				</li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+	  
+	  
+	  <nav class="navbar navbar-expand-lg my-desk-nav" style="background-color:#000000">
+		<div class="container-fluid my-desk-nav-items">
+			<a class="text-decoration-none my-main-title" href="/">
+			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
+			</a>
+			<button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="toggler-icon top-bar"></span>
+			<span class="toggler-icon middle-bar"></span>
+			<span class="toggler-icon bottom-bar"></span>
+			</button>
+			<div class='collapse navbar-collapse' id='navbarNav'>
+			<ul class='navbar-nav ms-auto'>
+				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/">Home</a>
+				</li>
+				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname === '/allProducts' ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/allProducts">All Products</a>
+				</li>
+				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/sverdle">About</a>
+				</li>
+			</ul>
+			</div>
+			<a href="#cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i></a>
+		</div>
+		</nav>
 </header>
 
 <style>
 	body{
     overflow-x: hidden;
 	}
-	nav{
-		height: 6rem;
-		width: 100vw;
-		background-color: #000000;
-		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
-		display: flex;
-		/* position: fixed; */
-		z-index: 10;
+
+	:root{
+    --main-color: #000000;
+    --purple-medium: #C0BCD3;
+    --sec-color: #000;
+    --ter-color: #FFF1D9;
+    --fourth-color: #FFFCF7;
+    --white-color: #fff;
+    --black-color: #000;
+    --grey-color: #7C7C7C;
+	--hover-color: #E74151;
 	}
 
-	/*Styling logo*/
-	.logo{
-		padding:1vh 1vw;
-		text-align: center;
+	nav {
+		/* box-shadow: #C0BCD3; */
+		box-shadow: 0px 3px 9px 0px rgba(231, 65, 81, 1);
 	}
-	.logo img {
-		height: 5rem;
-		width: 5rem;
+	.my-desk-nav {
+		display:none;
 	}
-
-	/*Styling Links*/
-	.nav-links{
-		display: flex;
-		list-style: none; 
-		width: 88vw;
-		padding: 0 0.7vw;
-		justify-content: space-evenly;
-		align-items: center;
-		text-transform: uppercase;
+	.my-desk-nav-items {
+		max-width: 1500px;
+		margin: 0 auto;
 	}
-	.nav-links li a{
-		text-decoration: none;
-		margin: 0 0.7vw;
+	.nav-link-color {
+		color: var(--white-color);
 	}
-	.nav-links li a:hover {
-		color: #61DAFB;
+	.nav-link-color:hover {
+		color: var(--hover-color);
 	}
-	.nav-links li {
-		position: relative;
-	}
-	.nav-links li a::before {
-		content: "";
-		display: block;
-		height: 3px;
-		width: 0%;
-		background-color: #61DAFB;
-		position: absolute;
-		transition: all ease-in-out 250ms;
-		margin: 0 0 0 10%;
-	}
-	.nav-links li a:hover::before{
-		width: 80%;
+	.nav-item-hover:hover {
+		color: var(--hover-color);
+		transition: background-color .3s ease-in-out;
+		border-radius: 10px;
 	}
 
-	/*Styling Buttons*/
-	.login-button{
-		background-color: transparent;
-		border: 1.5px solid #f2f5f7;
-		border-radius: 2em;
-		padding: 0.6rem 0.8rem;
-		margin-left: 2vw;
-		font-size: 1rem;
-		cursor: pointer;
-
-	}
-	.login-button:hover {
-		color: #131418;
-		background-color: #f2f5f7;
-		border:1.5px solid #f2f5f7;
-		transition: all ease-in-out 350ms;
-	}
-	.join-button{
-		color: #131418;
-		background-color: #61DAFB;
-		border: 1.5px solid #61DAFB;
-		border-radius: 2em;
-		padding: 0.6rem 0.8rem;
-		font-size: 1rem;
-		cursor: pointer;
-	}
-	.join-button:hover {
-		color: #f2f5f7;
-		background-color: transparent;
-		border:1.5px solid #f2f5f7;
-		transition: all ease-in-out 350ms;
+	@media screen and (min-width: 992px) {
+		.my-desk-nav {
+			display: block;
+		}
+		.my-mob-nav {
+			display: none;
+		}
 	}
 
-	/*Styling Hamburger Icon*/
-	.hamburger div{
+	.navbar-toggler {
 		width: 30px;
-		height:3px;
-		background: #f2f5f7;
-		margin: 5px;
-		transition: all 0.3s ease;
-	}
-	.hamburger{
-		display: none;
+		height: 20px;
+		position: relative;
+		transition: .5s ease-in-out;
 	}
 
-	/*Stying for small screens*/
-	@media screen and (max-width: 800px){
-		nav{
-			position: fixed;
-			z-index: 3;
-		}
-		.hamburger{
-			display:block;
-			position: absolute;
-			cursor: pointer;
-			right: 5%;
-			top: 50%;
-			transform: translate(-5%, -50%);
-			z-index: 2;
-			transition: all 0.7s ease;
-		}
-		.nav-links{
-			position: fixed;
-			background: #131418;
-			height: 100vh;
-			width: 100%;
-			flex-direction: column;
-			clip-path: circle(50px at 90% -20%);
-			-webkit-clip-path: circle(50px at 90% -10%);
-			transition: all 1s ease-out;
-			pointer-events: none;
-		}
-		.nav-links.open{
-			clip-path: circle(1000px at 90% -10%);
-			-webkit-clip-path: circle(1000px at 90% -10%);
-			pointer-events: all;
-		}
-		.nav-links li{
-			opacity: 0;
-		}
-		.nav-links li:nth-child(1){
-			transition: all 0.5s ease 0.2s;
-		}
-		.nav-links li:nth-child(2){
-			transition: all 0.5s ease 0.4s;
-		}
-		.nav-links li:nth-child(3){
-			transition: all 0.5s ease 0.6s;
-		}
-		.nav-links li:nth-child(4){
-			transition: all 0.5s ease 0.7s;
-		}
-		.nav-links li:nth-child(5){
-			transition: all 0.5s ease 0.8s;
-		}
-		.nav-links li:nth-child(6){
-			transition: all 0.5s ease 0.9s;
-			margin: 0;
-		}
-		.nav-links li:nth-child(7){
-			transition: all 0.5s ease 1s;
-			margin: 0;
-		}
-		li.fade{
-			opacity: 1;
-		}
+	.navbar-toggler, 
+	.navbar-toggler:focus,
+	.navbar-toggler:active,
+	.navbar-toggler-icon:focus {
+		outline: none;
+		border: none;
+		box-shadow: none;
 	}
-	/*Animating Hamburger Icon on Click*/
-	.toggle .line1{
-		transform: rotate(-45deg) translate(-5px,6px);
+
+	.navbar-toggle span {
+		margin: 0;
+		padding: 0;
 	}
-	.toggle .line2{
-		transition: all 0.7s ease;
-		width:0;
+
+	.toggler-icon {
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 3px;
+		background-color: var(--white-color);
+		border-radius: 1px;
+		opacity: 1;
+		left: 0;
+		transform: rotate(0deg);
+		transition: .25s ease-in-out;
 	}
-	.toggle .line3{
-		transform: rotate(45deg) translate(-5px,-6px);
+
+	.middle-bar {
+		margin-top: 0px;
+	}
+
+	.navbar-toggler .top-bar {
+		margin-top: 0;
+		transform: rotate(135deg);
+	}
+
+	.navbar-toggler .middle-bar {
+		opacity: 0;
+	}
+
+	.navbar-toggler .bottom-bar {
+		margin-top: 0;
+		transform: rotate(-135deg);
+	}
+
+	.navbar-toggler.collapsed .top-bar {
+		margin-top: -20px;
+		transform: rotate(0deg);
+	}
+
+	.navbar-toggler.collapsed .middle-bar {
+		margin-top: 0;
+		opacity: 1;
+	}
+
+	.navbar-toggler.collapsed .bottom-bar {
+		margin-top: 20px;
+		transform: rotate(0deg);
+	}
+	.shopping-cart {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		color: var(--white-color);
+	}
+	.shopping-cart:hover {
+		color: var(--hover-color);
 	}
 </style>

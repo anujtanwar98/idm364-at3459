@@ -19,11 +19,13 @@
 		"eslint-plugin-svelte": "^2.35.1",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
-		"svelte": "^4.2.7",
+		"svelte": "^4.2.9",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
 	"dependencies": {
+		"bootstrap": "^5.3.2",
+		"firebase": "^10.7.2",
 		"gsap": "^3.12.4",
 		"scrollmagic": "^2.0.8",
 		"three": "^0.160.0"

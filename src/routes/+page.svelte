@@ -36,47 +36,47 @@
 <div class="my-3d-file">
   <GLTFModel />
 </div>
-<!-- <div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">Scroll Me</div> -->
-<div class="section_box  flex-wrap w-100 animation_5" style="padding: 0; height: auto;">
+<!-- <div class="blank_row height-scrolly-box w-100 scrolly-box-item-align scrolly-box-flex scrolly-box-justify ">Scroll Me</div> -->
+<div class="section_box  scrolly-box-wrap w-100 animation_5" style="padding: 0; height: auto;">
   <!-- <h2>Trigger Image On Scroll</h2> -->
-  <div class="boxes w-100 flex-wrap animation_box" style="overflow: visible;">
-    <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
-      <div class="text w-50 d-flex justify-content-center align-items-center h-100">
+  <div class="boxes w-100 scrolly-box-wrap animation_box" style="overflow: visible;">
+    <div class="items scrolly-box-bg w-100 height-scrolly-box scrolly-box-flex scrolly-box-item-strech scrolly-box-justify ani5">
+      <div class="text width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box">
         <h2>Product 1</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product1">
+      <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box product1">
         <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png" alt="">
       </div>
     </div>
-    <div class="items  bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
-      <div class="text w-50 d-flex justify-content-center align-items-center h-100">
+    <div class="items  scrolly-box-bg w-100 height-scrolly-box scrolly-box-flex scrolly-box-item-strech scrolly-box-justify ani5">
+      <div class="text width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box">
         <h2>Product 2</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product2">
+      <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box product2">
         <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
-    <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
-      <div class="text w-50 d-flex justify-content-center align-items-center h-100">
+    <div class="items scrolly-box-bg w-100 height-scrolly-box scrolly-box-flex scrolly-box-item-strech scrolly-box-justify ani5">
+      <div class="text width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box">
         <h2>Product 3</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product3">
+      <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box product3">
         <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
-    <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
-      <div class="text w-50 d-flex justify-content-center align-items-center h-100">
+    <div class="items scrolly-box-bg w-100 height-scrolly-box scrolly-box-flex scrolly-box-item-strech scrolly-box-justify ani5">
+      <div class="text width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box">
         <h2>Product 4</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product4">
+      <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box product4">
         <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
-    <div class="items bg_blue w-100 h-100 d-flex align-items-strech justify-content-center ani5">
-      <div class="text w-50 d-flex justify-content-center align-items-center h-100">
+    <div class="items scrolly-box-bg w-100 height-scrolly-box scrolly-box-flex scrolly-box-item-strech scrolly-box-justify ani5">
+      <div class="text width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box">
         <h2>Product 5</h2>
       </div>
-      <div class="Image w-50 d-flex justify-content-center align-items-center h-100 product5">
+      <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box product5">
         <img src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343304/svelte%20app/iPhone15Pro-BlackT2_x3mpsm.png" alt="">
       </div>
     </div>
@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<div class="blank_row h-100 w-100 align-items-center d-flex justify-content-center ">
+<div class="blank_row height-scrolly-box w-100 scrolly-box-item-align scrolly-box-flex scrolly-box-justify ">
   View All Products
 </div>
 
@@ -103,30 +103,30 @@
   h2 {
   color: #fff;
   }
-.bg_blue {
+.scrolly-box-bg {
     background: #000000;
 }
-.d-flex {
+.scrolly-box-flex {
   display: flex;
 }
 
-.justify-content-center {
+.scrolly-box-justify {
   justify-content: center;
 }
 
-.align-items-strech {
+.scrolly-box-item-strech {
   align-items: stretch;
 }
 
-.align-items-center {
+.scrolly-box-item-align {
   align-items: center;
 }
 
-.h-100 {
+.height-scrolly-box {
   height: 100vh;
 }
 
-.w-50 {
+.width-scrolly-box {
   width: 50%;
 }
 .product1 {
@@ -218,6 +218,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a0cbe8;
+  background-color: #212529;
 }
 </style>

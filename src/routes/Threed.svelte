@@ -9,12 +9,12 @@
   
     onMount(() => {
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
   
       // WebGLRenderer with alpha set to true for a transparent background
       const renderer = new THREE.WebGLRenderer({ alpha: false });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setClearColor(0x000000); // Set the background color
+      renderer.setClearColor(0x212529); // Set the background color
       container.appendChild(renderer.domElement);
   
       // Lighting
@@ -55,17 +55,17 @@
   
       // GLTF Loader
     const loader = new GLTFLoader();
-    loader.load('/applemacstudio.glb', (gltf) => {
+    loader.load('/applevisionpro.glb', (gltf) => {
       console.log("Model loaded", gltf);
       model = gltf.scene; 
       // Detect if the user is on a mobile device
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       if (isMobile) {
         // Set smaller scale for mobile devices
-        model.scale.set(15, 15, 15);
+        model.scale.set(40, 40, 40);
       } else {
         // Set larger scale for non-mobile devices
-        model.scale.set(40, 40, 40);
+        model.scale.set(120, 120, 120);
       }
       scene.add(model);
     }, undefined, (error) => {
