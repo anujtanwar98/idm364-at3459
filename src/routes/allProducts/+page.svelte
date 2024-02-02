@@ -284,4 +284,11 @@
             font-size: 1.5em;
         }
     }
+    @media (max-width: 600px) {
+        .col-2 {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 17%;
+        }
+    }
 </style>
