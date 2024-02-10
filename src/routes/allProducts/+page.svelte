@@ -121,6 +121,16 @@
                 <video class="device-image" autoplay loop>
                     <source src="https://res.cloudinary.com/dr8jiwn4u/video/upload/v1707539969/svelte%20app/vision-pro-video_pdahfc.mp4">
                 </video>
+                <div class="intro_new_product">
+                    <div class="intro_new_product_wrapper">
+                        <div class="intro_new_product_text">
+                            <h1>Introducing the Vision Pro</h1>
+                            <p class="subtitle">
+                                The Vision Pro is a new era of spatial computing. It is a wearable device that allows you to interact with the digital world in the same way you interact with the physical world. It is a new way to experience the world around you, and it is the future of computing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- <div class="device-info-text-box">
                 <h1 class="device-info-text">Welcome to the era of spatial computing.</h1>
@@ -359,12 +369,16 @@
         padding: 20px;
         border-radius: 20px;
         background-color: #000000;
+        position: relative;
+        text-align: center;
+        color: white;
     }
     .device-image{
         /* max-width: 1200px; */
         max-width: 100%;
         width: 100%;
         height: auto;
+        filter: brightness(0.8) contrast(120%) blur(1px);
     }
     .device-info-text-box{
         display: flex;
@@ -425,5 +439,24 @@
         text-align: center;
         font-family: 'Inter', sans-serif;
         font-weight: 400;
+    }
+    .intro_new_product{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 20px;
+        max-width: 1200px;
+        padding: 20px;
+        margin: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        color: #fff;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
     }
 </style>
