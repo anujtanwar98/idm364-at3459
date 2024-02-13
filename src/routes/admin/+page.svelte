@@ -6,8 +6,8 @@
 <script>
     import { onMount } from 'svelte';
     import { collection, addDoc } from 'firebase/firestore';
-    import db from '../../firebase.js'
-    let name, price, productImage1, productImage2, productImage3;
+    import { db } from '../../firebase.js'
+    let name, deviceColor, price, productImage1, productImage2, productImage3;
     let submissionMessage = '';
 
     // Function to check if a string is a valid URL
@@ -46,12 +46,14 @@
         const sanitizedPrice = sanitizePrice(price);
         const sanitizedPriceAsString = sanitizedPrice.toString();
         const sanitizedProductName = sanitizeText(name);
+        const sanitizedColor = sanitizeText(deviceColor);
         // Sanitize and validate image URLs
         const sanitizedProductImage1 = sanitizeImageUrl(productImage1);
         const sanitizedProductImage2 = sanitizeImageUrl(productImage2);
         const sanitizedProductImage3 = sanitizeImageUrl(productImage3);
         await addDoc(collection(db, "products"), {
             name: sanitizedProductName,
+            deviceColor: sanitizedColor,
             price: sanitizedPriceAsString,
             productImage1: sanitizedProductImage1,
             productImage2: sanitizedProductImage2,
@@ -63,6 +65,7 @@
         
         // Clear the input fields
         name = '';
+        deviceColor = '';
         price = '';
         productImage1 = '';
         productImage2 = '';
@@ -77,6 +80,7 @@
 <form on:submit={handleSubmit}>
     <!-- <input type="text"  bind:value={input} placeholder="Product Name" /> -->
     <input type="text" bind:value={name} placeholder="Product Name" required />
+    <input type="text" bind:value={deviceColor} placeholder="Color" required />
     <input type="number" bind:value={price} placeholder="Price only numbers" required />
     <input type="text" bind:value={productImage1} placeholder="Product Image 1 URL" required />
     <input type="text" bind:value={productImage2} placeholder="Product Image 2 URL" required />

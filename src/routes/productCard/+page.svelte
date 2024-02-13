@@ -1,6 +1,6 @@
 <svelte:head>
-	<title>Product</title>
-	<meta name="description" content="All Products" />
+	<title>Product Details</title>
+	<meta name="description" content="Details of Products" />
 </svelte:head>
 
 <script>

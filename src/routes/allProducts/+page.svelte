@@ -3,6 +3,23 @@
 	<meta name="description" content="All Products" />
 </svelte:head>
 
+<script>
+    import { onMount } from 'svelte';
+    import { collection, getDocs } from 'firebase/firestore';
+    import { db } from '../../firebase.js';
+
+    let products = [];
+
+    onMount(async () => {
+        const querySnapshot = await getDocs(collection(db, "products"));
+        products = querySnapshot.docs.map(doc => {
+            return { id: doc.id, ...doc.data() };
+        });
+    });
+
+    
+</script>
+
 <section class="main-section">    
     <div class="main-Wrapper">
         <div class="main-wrapper-box">
@@ -10,17 +27,23 @@
         </div>
     </div>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+        {#each products as product}
         <div class="col-2">
+            <a class="product-link" href="/productCard?id={product.id}">
             <div class="card card-block card-1">
                 <div class="image-box">
-                    <img class="card-img-top" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png" alt="Card image cap">
+                    <img class="card-img-top" src="{product.productImage1}" alt="Card image cap">
                 </div>
                 <div class="text-box">
-                    <p class="card-title">Card title</p>
+                    <p class="card-title">
+                        {product.name}
+                    </p>
                 </div>
             </div>
+            </a>
         </div>
-        <div class="col-2">
+        {/each}
+        <!-- <div class="col-2">
             <div class="card card-block card-2">
                 <div class="image-box">
                     <img class="card-img-top" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png" alt="Card image cap">
@@ -109,7 +132,7 @@
                     <p class="card-title">Card title</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="info-devices">
         <div class="info-device-wrapper">
@@ -190,6 +213,9 @@
     .scrolling-wrapper{
         overflow-x: auto;
         margin: 10px;
+    }
+    .pt-2 {
+        padding-top: 1.5rem !important;
     }
     .main-section{
         background-color: #212529;
