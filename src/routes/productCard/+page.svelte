@@ -5,16 +5,56 @@
 
 <script>
 	import { onMount } from 'svelte';
+    import { doc, getDoc } from 'firebase/firestore';
+    import { db } from '../../firebase.js';
 
 	let mainImage = '';
+    let product = {};
+    let productImages = [];
 
-	onMount(() => {
-		mainImage = 'https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png';
-	});
+	// onMount(() => {
+	// 	mainImage = 'https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png';
+	// });
+    onMount(async () => {
+        const useParams = new URLSearchParams(window.location.search);
+        const productId = useParams.get('id');
+
+        if (productId) {
+            const ProductDocRef = doc(db, 'products', productId);
+            const ProductDocSnap = await getDoc(ProductDocRef);
+
+            if (ProductDocSnap.exists()) {
+                product = { ...ProductDocSnap.data(), id: ProductDocSnap.id };
+                mainImage = product.productImage1 || ''; 
+            // Create an array of available product images
+            productImages = [
+                    product.productImage1,
+                    product.productImage2,
+                    product.productImage3
+                ].filter(Boolean); // Remove any undefined or null values
+                
+            } else {
+                console.log('Product not found!');
+            }
+        }
+    });
 
 	function openImage(imageUrl) {
 		mainImage = imageUrl;
 	}
+
+    function formatPrice(price) {
+        // Convert the price string to a number
+        const numericPrice = parseInt(price, 10);
+
+        // Convert the number to a string and insert a decimal point before the last 2 digits
+        let formattedPrice = numericPrice.toString();
+        formattedPrice = formattedPrice.slice(0, -2) + "." + formattedPrice.slice(-2);
+
+        // Add a dollar sign in front of the formatted price
+        return `$${formattedPrice}`;
+    }
+
 </script>
 
 <div class="product-page">
@@ -22,19 +62,26 @@
 		<div class="main-display-image">
 			<img src={mainImage} alt="Main Display Image">
 		</div>
-		<div class="product-images">
+		<!-- <div class="product-images">
 			<div class="product-extra-images" on:click={() => openImage('https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png')}>
 				<img class="image-product" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png" alt="Product Image 1" style="width: 40px;">
 			</div>
 			<div class="product-extra-images" on:click={() => openImage('https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png')}>
 				<img class="image-product" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png" alt="Product Image 2" style="width: 40px;">
 			</div>
-		</div>
+		</div> -->
+        <div class="product-images">
+            {#each productImages as image, index}
+                <div class="product-extra-images" on:click={() => openImage(image)} key={index}>
+                    <img class="image-product" src={image} alt={`Product Image ${index + 1}`} style="width: 40px;">
+                </div>
+            {/each}
+        </div>
 	</div>
 	<div class="product-details">
-        <h1>Product Name</h1>
-        <p>Description of the product...</p>
-        <p>Price: $XX.XX</p>
+        <h1>{product.name}</h1>
+        <p>{formatPrice(product.price)}</p>
+        <p>{product.deviceColor}</p>
 		<button class="add_to_cart_button">Add to Cart</button>
     </div>
 </div>

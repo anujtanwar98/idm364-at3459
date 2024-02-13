@@ -333,7 +333,7 @@
         text-align: center;
     }
     .card-title{
-        font-size: 1.25em;
+        font-size: 1rem;
         color: #ff8787;
     }
     .col-2 {
@@ -484,5 +484,8 @@
         width: 80%;
         max-width: 800px;
         text-align: center;
+    }
+    .product-link{
+        text-decoration: none;
     }
 </style>
