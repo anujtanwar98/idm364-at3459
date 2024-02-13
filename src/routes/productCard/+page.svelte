@@ -35,6 +35,7 @@
         <h1>Product Name</h1>
         <p>Description of the product...</p>
         <p>Price: $XX.XX</p>
+		<button class="add_to_cart_button">Add to Cart</button>
     </div>
 </div>
 
@@ -42,8 +43,8 @@
     :global(body) {
 		margin: 0;
 		padding: 0;
-		background-color: #000000; /* Dark theme background */
-		color: #E0E0E0; /* Light text for contrast */
+		background-color: #000000;
+		color: #ffffff;
 		font-family: Arial, sans-serif;
 	}
     .product-page {
@@ -94,6 +95,7 @@
         align-items: center;
         background-color: #212529;
         border: 1px solid #ddd;
+		cursor: pointer;
     }
     .image-product {
         max-width: 100%;
@@ -123,6 +125,22 @@
         font-size: 1.5rem;
         font-weight: bold;
     }
+	.add_to_cart_button {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 10px;
+		background-color: #E74151;
+		color: #ffffff;
+		font-size: 1.2rem;
+		cursor: pointer;
+	}
+	.add_to_cart_button:hover {
+		background-color: #ff5a6e;
+	}
+	/* add on click */
+	.add_to_cart_button:active {
+		transform: scale(0.95);
+	}
     @media (max-width: 1024px) {
         .product-page {
             flex-direction: column;
