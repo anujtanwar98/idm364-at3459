@@ -80,12 +80,22 @@
 
 <h1 class="Add_title">Add Products</h1>
 <form on:submit={handleSubmit}>
-    <!-- <input type="text"  bind:value={input} placeholder="Product Name" /> -->
+    <label for="name">Name:</label>
     <input type="text" bind:value={name} placeholder="Product Name" required />
+
+    <label for="deviceColor">Color:</label>
     <input type="text" bind:value={deviceColor} placeholder="Color" required />
+
+    <label for="price">Price:</label>
     <input type="number" bind:value={price} placeholder="Price only numbers" required />
+
+    <label for="productImage1">Product Image 1:</label>
     <input type="text" bind:value={productImage1} placeholder="Product Image 1 URL" required />
+
+    <label for="productImage2">Product Image 2:</label>
     <input type="text" bind:value={productImage2} placeholder="Product Image 2 URL" required />
+
+    <label for="productImage3">Product Image 3:</label>
     <input type="text" bind:value={productImage3} placeholder="Product Image 3 URL" required />
     <button type="submit">Add Product</button>
     {#if submissionMessage}
@@ -104,7 +114,7 @@
     .Add_title {
         text-align: center;
         color: #E74151;
-        padding: 20px;
+        padding-top: 20px;
     }
     form {
         display: flex;
@@ -112,7 +122,6 @@
         gap: 10px;
         max-width: 300px;
         margin: 0 auto;
-        padding: 20px;
     }
     input {
         padding: 10px;
