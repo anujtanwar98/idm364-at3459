@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Product Details</title>
+	<title>{product.name} Details</title>
 	<meta name="description" content="Details of Products" />
 </svelte:head>
 

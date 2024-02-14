@@ -26,8 +26,11 @@
 				<li class="nav-item" aria-current={$page.url.pathname === '/allProducts' ? 'page' : undefined}>
 					<a class="nav-link active nav-link-color" href="/allProducts">All Products</a>
 				</li>
-				<li class="nav-item" aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-					<a class="nav-link active nav-link-color" href="/sverdle">About</a>
+				<li class="nav-item" aria-current={$page.url.pathname.startsWith('/admin') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/admin">Add Products</a>
+				</li>
+				<li class="nav-item" aria-current={$page.url.pathname.startsWith('/editDelete') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/editDelete">Edit & Delete</a>
 				</li>
 			</ul>
 		  </div>
@@ -53,8 +56,11 @@
 				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname === '/allProducts' ? 'page' : undefined}>
 					<a class="nav-link active nav-link-color" href="/allProducts">All Products</a>
 				</li>
-				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-					<a class="nav-link active nav-link-color" href="/sverdle">About</a>
+				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname.startsWith('/admin') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/admin">Add Products</a>
+				</li>
+				<li class="nav-item nav-item-hover" aria-current={$page.url.pathname.startsWith('/editDelete') ? 'page' : undefined}>
+					<a class="nav-link active nav-link-color" href="/editDelete">Edit & Delete</a>
 				</li>
 			</ul>
 			</div>

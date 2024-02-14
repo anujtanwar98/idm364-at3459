@@ -77,6 +77,8 @@
         }, 3000); // Hide after 3 seconds
     }
 </script>
+
+<h1 class="Add_title">Add Products</h1>
 <form on:submit={handleSubmit}>
     <!-- <input type="text"  bind:value={input} placeholder="Product Name" /> -->
     <input type="text" bind:value={name} placeholder="Product Name" required />
@@ -92,6 +94,18 @@
 </form>
 
 <style>
+    :global(body) {
+		margin: 0;
+		padding: 0;
+		background-color: #000000;
+		color: #ffffff;
+		font-family: Arial, sans-serif;
+	}
+    .Add_title {
+        text-align: center;
+        color: #E74151;
+        padding: 20px;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -104,13 +118,15 @@
         padding: 10px;
         border: none;
         border-radius: 10px;
-        border: 1px solid #007bff;
+        border: 1px solid #E74151;
+        background-color: #212529;
+        color: #ffffff;
     }
     button {
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #007bff;
+        background-color: #E74151;
         color: #ffffff;
         cursor: pointer;
     }
