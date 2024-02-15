@@ -58,7 +58,7 @@
             productImage1: sanitizedProductImage1,
             productImage2: sanitizedProductImage2,
             productImage3: sanitizedProductImage3,
-            Id: crypto.randomUUID()
+            // Id: crypto.randomUUID()
         });
         // Set the submission message
         submissionMessage = "Product added successfully!";

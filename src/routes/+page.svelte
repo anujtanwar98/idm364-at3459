@@ -130,31 +130,31 @@
   width: 50%;
 }
 .product1 {
-    background-color: #7393B3;
+    background-color: #2a2a2a;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .product2 {
-    background-color: #B2BEB5; 
+    background-color: #3a3a3a; 
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .product3 {
-    background-color: #36454F; 
+    background-color: #4a4a4a; 
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .product4 {
-    background-color: #A9A9A9; 
+    background-color: #3a3a3a; 
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .product5 {
-    background-color: #6082B6; 
+    background-color: #2a2a2a; 
     display: flex;
     justify-content: center;
     align-items: center;
