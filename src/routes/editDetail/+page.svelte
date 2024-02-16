@@ -1,6 +1,6 @@
 <svelte:head>
-	<title>{product.name} Edit Details</title>
-	<meta name="description" content="All Products" />
+    <title>Edit {product.name} Details</title>
+    <meta name="description" content="Edit Product Details" />
 </svelte:head>
 
 <script>
@@ -10,47 +10,32 @@
 
     let product = {
         name: '',
-        deviceColor: '',
         price: '',
-        productImage1: '',
-        productImage2: '',
-        productImage3: ''
+        variants: []
     };
     let productId;
 
-    // Function to check if a string is a valid URL
     const isValidUrl = (url) => {
         try {
             new URL(url);
             return true;
-        } catch (e) {
+        } catch (_) {
             return false;
         }
     };
 
     const sanitizeText = (text) => text.trim().replace(/<\/?[^>]+(>|$)/g, "");
 
-    const sanitizePrice = (price) => {
-        const sanitizedPrice = parseFloat(price);
-        return !isNaN(sanitizedPrice) && isFinite(price) ? sanitizedPrice : 0;
-    };
+    const sanitizePrice = (price) => parseFloat(price) || 0;
 
-    const sanitizeImageUrl = (url) => {
-        if (!isValidUrl(url)) return '';
-        const parsedUrl = new URL(url);
-        if (!['http:', 'https:'].includes(parsedUrl.protocol)) return '';
-        const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-        const extension = parsedUrl.pathname.split('.').pop().toLowerCase();
-        if (!validExtensions.includes(`.${extension}`)) return '';
-        return url;
-    };
+    const sanitizeImageUrl = (url) => isValidUrl(url) ? url : '';
 
     onMount(async () => {
         const useParams = new URLSearchParams(window.location.search);
         productId = useParams.get('id');
 
         if (productId) {
-            const productRef = doc(db, 'products', productId);
+            const productRef = doc(db, 'devices', productId);
             const productSnap = await getDoc(productRef);
 
             if (productSnap.exists()) {
@@ -64,21 +49,30 @@
     async function updateProduct(event) {
         event.preventDefault();
 
-        // Sanitize inputs before updating
         product.name = sanitizeText(product.name);
-        product.deviceColor = sanitizeText(product.deviceColor);
-        product.price = sanitizePrice(product.price).toString(); // Convert sanitized price back to string if necessary
-        product.productImage1 = sanitizeImageUrl(product.productImage1);
-        product.productImage2 = sanitizeImageUrl(product.productImage2);
-        product.productImage3 = sanitizeImageUrl(product.productImage3);
+        product.price = sanitizePrice(product.price);
+        product.variants = product.variants.map(variant => ({
+            color: sanitizeText(variant.color),
+            imageUrls: variant.imageUrls.map(sanitizeImageUrl)
+        }));
 
-        const productRef = doc(db, 'products', productId);
+        const productRef = doc(db, 'devices', productId);
 
-        await updateDoc(productRef, {
-            ...product
-        });
+        await updateDoc(productRef, { ...product });
 
-        window.location.href = '/editDelete';
+        window.location.href = '/editDelete'; // Redirect after update
+    }
+
+    function addVariant() {
+        product.variants = [
+            ...product.variants,
+            { color: '', imageUrls: ['', '', ''] }
+        ];
+    }
+
+
+    function removeVariant(index) {
+        product.variants = product.variants.filter((_, i) => i !== index);
     }
 </script>
 
@@ -88,23 +82,24 @@
     <label for="name">Name:</label>
     <input type="text" bind:value={product.name} placeholder="Product Name" required />
 
-    <label for="deviceColor">Color:</label>
-    <input type="text" bind:value={product.deviceColor} placeholder="Color" required />
-
     <label for="price">Price:</label>
     <input type="number" bind:value={product.price} placeholder="Price only numbers" required />
 
-    <label for="productImage1">Product Image 1:</label>
-    <input type="text" bind:value={product.productImage1} placeholder="Product Image 1 URL" required />
+    {#each product.variants as variant, index}
+        <!-- <div class="variant"> -->
+            <label for={`color-${index}`}>Color {index + 1}:</label>
+            <input type="text" bind:value={variant.color} placeholder="Color" required />
 
-    <label for="productImage2">Product Image 2:</label>
-    <input type="text" bind:value={product.productImage2} placeholder="Product Image 2 URL" required />
+            {#each variant.imageUrls as imageUrl, i}
+                <label for={`imageUrl-${index}-${i}`}>Image URL {i + 1}:</label>
+                <input type="text" bind:value={variant.imageUrls[i]} placeholder="Image URL" required />
+            {/each}
 
-    <label for="productImage3">Product Image 3:</label>
-    <input type="text" bind:value={product.productImage3} placeholder="Product Image 3 URL" required />
+            <button class="remove_variant_button" type="button" on:click={() => removeVariant(index)}>Remove Variant</button>
+        <!-- </div> -->
+    {/each}
 
-    <!-- Add inputs for other fields as necessary -->
-
+    <button class="add_variant_button" type="button" on:click={addVariant}>Add Variant</button>
     <button type="submit">Save Changes</button>
 </form>
 
@@ -129,7 +124,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        max-width: 300px;
+        max-width: 400px;
         margin: 0 auto;
     }
     input {
@@ -155,5 +150,21 @@
     }
     .back_button_text {
         padding-top: 20px;
+    }
+    .remove_variant_button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5b5b5b;
+        color: #fff;
+        cursor: pointer;
+    }
+    .add_variant_button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        color: #E74151;
+        cursor: pointer;
     }
 </style>

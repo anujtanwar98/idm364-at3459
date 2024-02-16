@@ -11,13 +11,15 @@
     let products = [];
 
     onMount(async () => {
-        const querySnapshot = await getDocs(collection(db, "products"));
+        const querySnapshot = await getDocs(collection(db, "devices"));
         products = querySnapshot.docs.map(doc => {
-            return { id: doc.id, ...doc.data() };
+            const data = doc.data();
+            const firstImageUrl = data.variants && data.variants.length > 0 && data.variants[0].imageUrls.length > 0
+                ? data.variants[0].imageUrls[0]
+                : '';
+            return { id: doc.id, ...data, firstImageUrl };
         });
     });
-
-    
 </script>
 
 <section class="main-section">    
@@ -32,7 +34,8 @@
             <a class="product-link" href="/productCard?id={product.id}">
             <div class="card card-block card-1">
                 <div class="image-box">
-                    <img class="card-img-top" src="{product.productImage1}" alt="Card image cap">
+                    <!-- Use firstImageUrl from the product object -->
+                    <img class="card-img-top" src={product.firstImageUrl} alt="Card image cap">
                 </div>
                 <div class="text-box">
                     <p class="card-title">

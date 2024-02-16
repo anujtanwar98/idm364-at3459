@@ -16,7 +16,7 @@
 		  <a class="navbar-brand" href="/">
 			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
 		  </a>
-		  <a href="#cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
+		  <a href="/cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
 		  </a>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
@@ -64,7 +64,7 @@
 				</li>
 			</ul>
 			</div>
-			<a href="#cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i></a>
+			<a href="/cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i></a>
 		</div>
 		</nav>
 </header>

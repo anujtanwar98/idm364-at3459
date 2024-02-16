@@ -7,7 +7,9 @@
     import { onMount } from 'svelte';
     import { collection, addDoc } from 'firebase/firestore';
     import { db } from '../../firebase.js'
-    let name, deviceColor, price, productImage1, productImage2, productImage3;
+
+    let name, price;
+    let variants = []; // To store multiple color variants and their image URLs
     let submissionMessage = '';
 
     // Function to check if a string is a valid URL
@@ -40,68 +42,90 @@
 
         return url; // Return the original URL if all checks pass
     };
-     const handleSubmit = async e => {
+
+    const addVariant = () => {
+        variants = [...variants, {
+            color: '',
+            imageUrls: ['', '', '']
+        }];
+    };
+
+    const removeVariant = (index) => {
+        variants = variants.filter((_, i) => i !== index);
+    };
+
+    const handleSubmit = async e => {
         e.preventDefault();
         // Sanitize inputs
         const sanitizedPrice = sanitizePrice(price);
-        const sanitizedPriceAsString = sanitizedPrice.toString();
         const sanitizedProductName = sanitizeText(name);
-        const sanitizedColor = sanitizeText(deviceColor);
-        // Sanitize and validate image URLs
-        const sanitizedProductImage1 = sanitizeImageUrl(productImage1);
-        const sanitizedProductImage2 = sanitizeImageUrl(productImage2);
-        const sanitizedProductImage3 = sanitizeImageUrl(productImage3);
-        await addDoc(collection(db, "products"), {
+        const sanitizedVariants = variants.map(variant => ({
+            color: sanitizeText(variant.color),
+            imageUrls: variant.imageUrls.map(url => sanitizeImageUrl(url)).filter(url => url !== '')
+        }));
+
+        await addDoc(collection(db, "devices"), {
             name: sanitizedProductName,
-            deviceColor: sanitizedColor,
-            price: sanitizedPriceAsString,
-            productImage1: sanitizedProductImage1,
-            productImage2: sanitizedProductImage2,
-            productImage3: sanitizedProductImage3,
-            // Id: crypto.randomUUID()
+            price: sanitizedPrice,
+            variants: sanitizedVariants,
         });
+
         // Set the submission message
         submissionMessage = "Product added successfully!";
-        
+
         // Clear the input fields
         name = '';
-        deviceColor = '';
         price = '';
-        productImage1 = '';
-        productImage2 = '';
-        productImage3 = '';
+        variants = [];
 
         // Optional: Hide the message after a few seconds
         setTimeout(() => {
             submissionMessage = '';
         }, 3000); // Hide after 3 seconds
     }
+
+    // Initialize with one variant field
+    onMount(() => {
+        addVariant();
+    });
 </script>
 
-<h1 class="Add_title">Add Products</h1>
+
+<h1 class="Add_title">Add Test Products</h1>
 <form on:submit={handleSubmit}>
     <label for="name">Name:</label>
     <input type="text" bind:value={name} placeholder="Product Name" required />
 
-    <label for="deviceColor">Color:</label>
-    <input type="text" bind:value={deviceColor} placeholder="Color" required />
-
     <label for="price">Price:</label>
     <input type="number" bind:value={price} placeholder="Price only numbers" required />
 
-    <label for="productImage1">Product Image 1:</label>
-    <input type="text" bind:value={productImage1} placeholder="Product Image 1 URL" required />
+    {#each variants as variant, index}
+            <h2>Variant {index + 1}</h2>
+            <label for={`color-${index}`}>Color:</label>
+            <input type="text" bind:value={variant.color} placeholder="Color" required />
 
-    <label for="productImage2">Product Image 2:</label>
-    <input type="text" bind:value={productImage2} placeholder="Product Image 2 URL" required />
+            <label for={`imageUrl1-${index}`}>Image URL 1:</label>
+            <input type="text" bind:value={variant.imageUrls[0]} placeholder="Image URL 1" required />
 
-    <label for="productImage3">Product Image 3:</label>
-    <input type="text" bind:value={productImage3} placeholder="Product Image 3 URL" required />
+            <label for={`imageUrl2-${index}`}>Image URL 2:</label>
+            <input type="text" bind:value={variant.imageUrls[1]} placeholder="Image URL 2" required />
+
+            <label for={`imageUrl3-${index}`}>Image URL 3:</label>
+            <input type="text" bind:value={variant.imageUrls[2]} placeholder="Image URL 3" required />
+
+            {#if variants.length > 1}
+                <button class="remove_variant_button" type="button" on:click={() => removeVariant(index)}>Remove Variant</button>
+            {/if}
+    {/each}
+
+    <button class="add_variant_button" type="button" on:click={addVariant}>Add Another Variant</button>
     <button type="submit">Add Product</button>
+
     {#if submissionMessage}
         <p>{submissionMessage}</p>
     {/if}
 </form>
+
 
 <style>
     :global(body) {
@@ -137,6 +161,22 @@
         border-radius: 5px;
         background-color: #E74151;
         color: #ffffff;
+        cursor: pointer;
+    }
+    .remove_variant_button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5b5b5b;
+        color: #fff;
+        cursor: pointer;
+    }
+    .add_variant_button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        color: #E74151;
         cursor: pointer;
     }
 </style>

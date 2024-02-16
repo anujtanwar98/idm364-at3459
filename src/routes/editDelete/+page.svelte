@@ -1,54 +1,90 @@
 <svelte:head>
-	<title>Edit & Delete</title>
-	<meta name="description" content="All Products" />
+    <title>Edit & Delete</title>
+    <meta name="description" content="All Products" />
 </svelte:head>
 
 <script>
     import { onMount } from 'svelte';
-    import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+    import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
     import { db } from '../../firebase.js';
 
     let products = [];
-	let deleteMessage = '';
+    let deleteMessage = '';
+    // let editProduct = null; // The product being edited
 
     onMount(async () => {
-        const querySnapshot = await getDocs(collection(db, "products"));
-        products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        await fetchProducts();
     });
-	async function deleteProduct(productId) {
-		await deleteDoc(doc(db, "products", productId));
-		// Refresh the products list after deletion
-		const querySnapshot = await getDocs(collection(db, "products"));
-		products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-		deleteMessage = 'Product deleted successfully';
-    
-		// Optionally, clear the message after a few seconds
-		setTimeout(() => deleteMessage = '', 3000);
-	}
+    async function fetchProducts() {
+        const querySnapshot = await getDocs(collection(db, "devices"));
+        products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    }
+
+    async function deleteProduct(productId) {
+        await deleteDoc(doc(db, "devices", productId));
+        await fetchProducts(); // Refresh the products list
+        deleteMessage = 'Product deleted successfully';
+        setTimeout(() => deleteMessage = '', 3000);
+    }
+	function formatPrice(price) {
+        const numericPrice = parseInt(price, 10);
+        let formattedPrice = numericPrice.toString();
+        formattedPrice = formattedPrice.slice(0, -2) + "." + formattedPrice.slice(-2);
+        return `$${formattedPrice}`;
+    }
+
+    // function startEditing(product) {
+    //     editProduct = { ...product }; // Clone the product for editing
+    // }
+
+    // async function saveChanges() {
+    //     const productRef = doc(db, "products", editProduct.id);
+    //     await updateDoc(productRef, {
+    //         ...editProduct // Update all product fields
+    //     });
+    //     await fetchProducts(); // Refresh the products list
+    //     editProduct = null; // Clear the editing state
+    // }
+
+    // function cancelEditing() {
+    //     editProduct = null; // Exit editing mode
+    // }
 </script>
 
-{#if deleteMessage !== ''}
-    <p class="delete_message">{deleteMessage}</p>
+{#if deleteMessage}
+    <p class="message">{deleteMessage}</p>
 {/if}
-{#each products as product}
-    <div class="main_box">
-        <div class="title_box">
-			<h2 class="product_title">{product.name}</h2>
-		</div>
-		<div class="image_box">
-			<img class="product_image" src={product.productImage1} alt={product.name} />
-		</div>
-        <div>
-			<a class="edit_link" href={`/editDetail?id=${product.id}`}>
-				<p>edit</p>
-			</a>
-			<button class="delete_link" on:click={() => deleteProduct(product.id)}>
-                Delete
-            </button>
-		</div>
-    </div>
-{/each}
+
+<div class="products">
+    {#each products as product}
+		<div class="main_box">
+        <!-- <div class="product"> -->
+            <!-- <h2>{product.name} - ${product.price}</h2> -->
+			<div class="title_box">
+				<h2 class="product_title">{product.name}</h2>
+			</div>
+			<div class="price_box">
+				<h2 class="product_price">{formatPrice(product.price)}</h2>
+			</div>
+            <div>
+				<a class="edit_link" href={`/editDetail?id=${product.id}`}>
+                <!-- <button on:click={() => startEditing(product)}>Edit</button> -->
+				<p>Edit</p>	
+				</a>
+                <button class="delete_link" on:click={() => deleteProduct(product.id)}>Delete</button>
+            </div>
+            <!-- {#if editProduct && editProduct.id === product.id}
+                <form on:submit|preventDefault={saveChanges}>
+                    <input type="text" bind:value={editProduct.name} />
+                    <input type="number" bind:value={editProduct.price} />
+                    <button type="submit">Save Changes</button>
+                    <button type="button" on:click={cancelEditing}>Cancel</button>
+                </form>
+            {/if} -->
+        </div>
+    {/each}
+</div>
 
 <style>
 	:global(body) {
@@ -104,19 +140,18 @@
 		text-align: center;
 		margin-top: 10px;
 	}
-	.image_box {
-		width: 100px;
-		height: 100px;
+	.price_box {
+		width: 200px;
+		/* height: 200px; */
 		overflow: hidden;
 		object-fit: contain;
 		justify-content: center;
 		align-items: center;
 		display: flex;
 	}
-	.product_image {
-		width: 100%;
-		height: 100%;
-		max-width: 40px;
-		object-fit: contain;
+	.product_price {
+		margin: 0;
+		font-size: 1.25rem;
+		max-width: 100px;
 	}
 </style>

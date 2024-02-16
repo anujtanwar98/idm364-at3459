@@ -1,75 +1,88 @@
-<svelte:head>
-	<title>{product.name} Details</title>
-	<meta name="description" content="Details of Products" />
-</svelte:head>
-
 <script>
-	import { onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import { doc, getDoc } from 'firebase/firestore';
     import { db } from '../../firebase.js';
+    import { cart } from '../stores/cartStore.js';
 
-	let mainImage = '';
+    let mainImage = '';
     let product = {};
     let productImages = [];
+    let variantColors = [];
+    let selectedVariantIndex = 0;
 
-	// onMount(() => {
-	// 	mainImage = 'https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png';
-	// });
     onMount(async () => {
         const useParams = new URLSearchParams(window.location.search);
         const productId = useParams.get('id');
 
         if (productId) {
-            const ProductDocRef = doc(db, 'products', productId);
-            const ProductDocSnap = await getDoc(ProductDocRef);
+            const productDocRef = doc(db, 'devices', productId);
+            const productDocSnap = await getDoc(productDocRef);
 
-            if (ProductDocSnap.exists()) {
-                product = { ...ProductDocSnap.data(), id: ProductDocSnap.id };
-                mainImage = product.productImage1 || ''; 
-            // Create an array of available product images
-            productImages = [
-                    product.productImage1,
-                    product.productImage2,
-                    product.productImage3
-                ].filter(Boolean); // Remove any undefined or null values
-                
+            if (productDocSnap.exists()) {
+                product = { ...productDocSnap.data(), id: productDocSnap.id };
+
+                // Initialize with the first three images of the first variant
+                if (product.variants && product.variants.length > 0) {
+                    productImages = product.variants[0].imageUrls.slice(0, 3);
+                    mainImage = productImages[0]; // Set the main image to the first image of the first variant
+
+                    // Store colors of all variants
+                    variantColors = product.variants.map(variant => variant.color);
+                }
             } else {
                 console.log('Product not found!');
             }
         }
     });
 
-	function openImage(imageUrl) {
-		mainImage = imageUrl;
-	}
+    function openImage(imageUrl) {
+        mainImage = imageUrl;
+    }
 
     function formatPrice(price) {
-        // Convert the price string to a number
         const numericPrice = parseInt(price, 10);
-
-        // Convert the number to a string and insert a decimal point before the last 2 digits
         let formattedPrice = numericPrice.toString();
         formattedPrice = formattedPrice.slice(0, -2) + "." + formattedPrice.slice(-2);
-
-        // Add a dollar sign in front of the formatted price
         return `$${formattedPrice}`;
     }
+    function selectVariant(index) {
+    if (product.variants && product.variants[index]) {
+        productImages = product.variants[index].imageUrls.slice(0, 3);
+        mainImage = productImages[0]; // Update the main image to the first image of the selected variant
+    }
+}
+
+function addToCart() {
+    cart.update(items => {
+        const existingItem = items.find(item => item.id === product.id);
+
+        // Get details of the selected variant
+        const selectedVariant = product.variants[selectedVariantIndex];
+        const variantDetails = {
+            color: selectedVariant.color,
+            imageUrl: selectedVariant.imageUrls[0], // Assuming you want the first image
+        };
+
+        if (existingItem) {
+            // Update existing item in cart (if needed to include variant details)
+            return items.map(item =>
+                item.id === product.id ? { ...item, quantity: item.quantity + 1, ...variantDetails } : item
+            );
+        } else {
+            // Add new item to cart with variant details
+            return [...items, { ...product, quantity: 1, ...variantDetails }];
+        }
+    });
+}
+
 
 </script>
 
 <div class="product-page">
-	<div class="main_wrapper">
-		<div class="main-display-image">
-			<img src={mainImage} alt="Main Display Image">
-		</div>
-		<!-- <div class="product-images">
-			<div class="product-extra-images" on:click={() => openImage('https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png')}>
-				<img class="image-product" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705343309/svelte%20app/pixel-8-Rose2_iiigrb.png" alt="Product Image 1" style="width: 40px;">
-			</div>
-			<div class="product-extra-images" on:click={() => openImage('https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png')}>
-				<img class="image-product" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705526871/svelte%20app/device_converted_h96ux2.png" alt="Product Image 2" style="width: 40px;">
-			</div>
-		</div> -->
+    <div class="main_wrapper">
+        <div class="main-display-image">
+            <img src={mainImage} alt="Main Display Image">
+        </div>
         <div class="product-images">
             {#each productImages as image, index}
                 <div class="product-extra-images" on:click={() => openImage(image)} key={index}>
@@ -77,12 +90,16 @@
                 </div>
             {/each}
         </div>
-	</div>
-	<div class="product-details">
+    </div>
+    <div class="product-details">
         <h1>{product.name}</h1>
         <p>{formatPrice(product.price)}</p>
-        <p>{product.deviceColor}</p>
-		<button class="add_to_cart_button">Add to Cart</button>
+        <div class="variant-colors">
+            {#each variantColors as color, index}
+                <button class="color_select_button" on:click={() => selectVariant(index)}>{color}</button>
+            {/each}
+        </div>
+        <button class="add_to_cart_button" on:click="{addToCart}">Add to Cart</button>
     </div>
 </div>
 
@@ -115,8 +132,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 600px;
-        height: 600px;
+        width: 500px;
+        height: 500px;
         overflow: hidden;
     }
     .main-display-image img {
@@ -125,6 +142,11 @@
         object-fit: contain;
         max-width: 400px;
         margin: 40px;
+        margin-right: auto;
+        margin-left: auto;
+        max-height: 100%;
+        max-width: 100%;
+        padding: 40px;
     }
     .product-images {
         display: flex;
@@ -133,8 +155,8 @@
         gap: 20px;
     }
     .product-extra-images {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
         border-radius: 100px;
         overflow: hidden;
         display: flex;
@@ -188,6 +210,16 @@
 	.add_to_cart_button:active {
 		transform: scale(0.95);
 	}
+    .color_select_button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #515151;
+        color: #ffffff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin: 10px;
+    }
     @media (max-width: 1024px) {
         .product-page {
             flex-direction: column;
