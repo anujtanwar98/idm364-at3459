@@ -24,9 +24,8 @@
                 // Initialize with the first three images of the first variant
                 if (product.variants && product.variants.length > 0) {
                     productImages = product.variants[0].imageUrls.slice(0, 3);
-                    mainImage = productImages[0]; // Set the main image to the first image of the first variant
-
-                    // Store colors of all variants
+                    mainImage = productImages[0];
+                    
                     variantColors = product.variants.map(variant => variant.color);
                 }
             } else {
@@ -46,30 +45,30 @@
         return `$${formattedPrice}`;
     }
     function selectVariant(index) {
+    selectedVariantIndex = index; 
     if (product.variants && product.variants[index]) {
         productImages = product.variants[index].imageUrls.slice(0, 3);
-        mainImage = productImages[0]; // Update the main image to the first image of the selected variant
+        mainImage = productImages[0];
     }
 }
 
 function addToCart() {
     cart.update(items => {
-        const existingItem = items.find(item => item.id === product.id);
+        const variantIdentifier = `${product.id}-${product.variants[selectedVariantIndex].color}`;
+        const existingItemIndex = items.findIndex(item => item.variantIdentifier === variantIdentifier);
 
-        // Get details of the selected variant
         const selectedVariant = product.variants[selectedVariantIndex];
         const variantDetails = {
             color: selectedVariant.color,
-            imageUrl: selectedVariant.imageUrls[0], // Assuming you want the first image
+            imageUrl: selectedVariant.imageUrls[0],
+            variantIdentifier: variantIdentifier,
         };
 
-        if (existingItem) {
-            // Update existing item in cart (if needed to include variant details)
-            return items.map(item =>
-                item.id === product.id ? { ...item, quantity: item.quantity + 1, ...variantDetails } : item
+        if (existingItemIndex !== -1) {
+            return items.map((item, index) =>
+                index === existingItemIndex ? { ...item, quantity: item.quantity + 1, ...variantDetails } : item
             );
         } else {
-            // Add new item to cart with variant details
             return [...items, { ...product, quantity: 1, ...variantDetails }];
         }
     });

@@ -8,9 +8,9 @@
         formattedPrice = formattedPrice.slice(0, -2) + "." + formattedPrice.slice(-2);
         return `$${formattedPrice}`;
     }
-    function removeFromCart(itemId) {
+    function removeFromCart(itemId, itemColor) {
         cart.update(items => {
-            return items.filter(item => item.id !== itemId);
+            return items.filter(item => !(item.id === itemId && item.color === itemColor));
         });
     }
 
@@ -24,7 +24,17 @@
 
 </script>
 
-{#each $cart as item (item.id)}
+{#if $cart.length === 0}
+    <div class="no_items_message">
+        <h1>Your cart is empty</h1>
+    </div>
+    <div class="explore_products">
+        <a class="explore_products_link" href="/allProducts">
+            <button class="explore_products_button">Explore Products</button>
+        </a>
+    </div>
+{:else}
+{#each $cart as item (`${item.id}-${item.color}`)}
 <div class="main_wrapper">
     <div class="main_image_box">
         <img src={item.imageUrl} alt="Main Display Image" />
@@ -44,7 +54,7 @@
             <p>Quantity: 1</p>
         </div> -->
         <div class="remove_button">
-            <button on:click={() => removeFromCart(item.id)}>X</button>
+            <button on:click={() => removeFromCart(item.id, item.color)}>X</button>
         </div>
     </div>
 </div>
@@ -60,6 +70,7 @@
         <p>Total: {$finalAmount ? formatPrice($finalAmount) : '$0.00'}</p>
     </div>
 </div>
+{/if}
 
 
 <style>
@@ -166,5 +177,36 @@
         justify-content: center;
         align-items: center;
         color: #ffffff;
+    }
+    .no_items_message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        /* height: 100vh; */
+    }
+    .explore_products {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .explore_products_link {
+        text-decoration: none;
+    }
+    .explore_products_button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #E74151;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    .explore_products_button:hover {
+        background-color: #7c7c7c;
+        color: #000000;
+    }
+    .explore_products_button {
+        transition: background-color 0.5s ease;
     }
 </style>

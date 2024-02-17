@@ -13,7 +13,7 @@
   let bgColors = ['#FFD700', '#FF5733', '#33FF57', '#3357FF', '#FF33F4', '#00FFFF', '#FF4500', '#4B0082', '#FA8072'];
 
   onMount(async () => {
-    const specificProductNames = ['Rabbit R1', 'Apple Vision Pro', 'Apple Watch Ultra 2', 'Google Pixel Fold', 'Apple iPhone 15 Pro'];
+    const specificProductNames = ['Rabbit R1', 'Apple Vision Pro', 'Apple Watch Ultra 2', 'Google Pixel Fold', 'Meta Quest 3'];
     const productsData = [];
 
     for (const productName of specificProductNames) {
