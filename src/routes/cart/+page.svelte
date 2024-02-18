@@ -79,7 +79,6 @@
 		padding: 0;
 		background-color: #000000;
 		color: #ffffff;
-		font-family: Arial, sans-serif;
 	}
     .main_wrapper {
         position: relative;
@@ -123,6 +122,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .main_title h2 {
+        font-size: 1rem;
     }
     .main_price {
         width: 100%;

@@ -14,3 +14,22 @@
 		<slot />
 	</main>
 </div>
+
+<style>
+	:global(body) {
+		margin: 0;
+		padding: 0;
+		background-color: #000000;
+		color: #ffffff;
+		font-family: "Roboto", sans-serif;
+	}
+	:global(h1, h2, h3, h4, h5, h6) {
+		font-family: "Roboto", sans-serif;
+	}
+	:global(p, a, button) {
+		font-family: "Roboto", sans-serif;
+	}
+	:global(input, select, textarea, label) {
+		font-family: "Roboto", sans-serif;
+	}
+</style>

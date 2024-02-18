@@ -22,10 +22,60 @@
     });
 </script>
 
-<section class="main-section">    
-    <div class="main-Wrapper">
-        <div class="main-wrapper-box">
-            <h1 class="main-wrapper-text">Crafted for Creativity: Innovate, Integrate, Ascend</h1>
+<section class="main-section">
+    <div class="info-devices">
+        <div class="info-device-wrapper">
+            <div class="device-info-text-box">
+                <h1 class="device-info-text">Welcome to the era of spatial computing</h1>
+            </div>
+            <div class="device-info-image">
+                <!-- <img class="device-image" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706912324/svelte%20app/applevisionpro-glass-1_vf7hm5.png" alt="Card image cap"> -->
+                <video class="device-image" autoplay loop>
+                    <source src="https://res.cloudinary.com/dr8jiwn4u/video/upload/v1707539969/svelte%20app/vision-pro-video_pdahfc.mp4">
+                </video>
+                <div class="intro_new_product">
+                    <div class="intro_new_product_wrapper">
+                        <div class="intro_new_product_text">
+                            <h1>Introducing the Vision Pro</h1>
+                            <p class="subtitle">
+                                The Vision Pro is a new era of spatial computing. It is a wearable device that allows you to interact with the digital world in the same way you interact with the physical world. It is a new way to experience the world around you, and it is the future of computing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="device-info-text-box">
+                <h1 class="device-info-text">Welcome to the era of spatial computing.</h1>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="learn-more">
+        <div class="learn-more-wrapper">
+            <div class="two-learn-more-boxes">
+                <div class="learn-more-box">
+                    <div class="learn-more-box-image">
+                        <img class="image-learn-box" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706907494/svelte%20app/sensors_all__dp0a8e4y4u4i_large_2x_yavywe.png" alt="">
+                    </div>
+                    <div class="learn-more-box-title">
+                        <h1>A sophisticated sensor array</h1>
+                    </div>
+                    <div class="learn-more-box-para">
+                        <p>A pair of high-resolution cameras transmit over one billion pixels per second to the displays so you can see the world around you clearly. The system also helps deliver precise head and hand tracking and real-time 3D mapping, all while understanding your hand gestures from a wide range of positions.</p>
+                    </div>
+                </div>
+                <div class="learn-more-box">
+                    <div class="learn-more-box-image">
+                        <img class="image-learn-box" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706911984/svelte%20app/eye_tracking_on__ln11reqs6mi6_large_2x_iub7le.png" alt="">
+                    </div>
+                    <div class="learn-more-box-title">
+                        <h1>Responsive, precision eye tracking</h1>
+                    </div>
+                    <div class="learn-more-box-para">
+                        <p>A high-performance eye-tracking system of LEDs and infrared cameras projects invisible light patterns onto each eye. This advanced system provides ultraprecise input without your needing to hold any controllers, so you can accurately select elements just by looking at them.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
@@ -137,59 +187,9 @@
             </div>
         </div> -->
     </div>
-    <div class="info-devices">
-        <div class="info-device-wrapper">
-            <div class="device-info-text-box">
-                <h1 class="device-info-text">Welcome to the era of spatial computing</h1>
-            </div>
-            <div class="device-info-image">
-                <!-- <img class="device-image" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706912324/svelte%20app/applevisionpro-glass-1_vf7hm5.png" alt="Card image cap"> -->
-                <video class="device-image" autoplay loop>
-                    <source src="https://res.cloudinary.com/dr8jiwn4u/video/upload/v1707539969/svelte%20app/vision-pro-video_pdahfc.mp4">
-                </video>
-                <div class="intro_new_product">
-                    <div class="intro_new_product_wrapper">
-                        <div class="intro_new_product_text">
-                            <h1>Introducing the Vision Pro</h1>
-                            <p class="subtitle">
-                                The Vision Pro is a new era of spatial computing. It is a wearable device that allows you to interact with the digital world in the same way you interact with the physical world. It is a new way to experience the world around you, and it is the future of computing.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="device-info-text-box">
-                <h1 class="device-info-text">Welcome to the era of spatial computing.</h1>
-            </div> -->
-        </div>
-    </div>
-
-    <div class="learn-more">
-        <div class="learn-more-wrapper">
-            <div class="two-learn-more-boxes">
-                <div class="learn-more-box">
-                    <div class="learn-more-box-image">
-                        <img class="image-learn-box" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706907494/svelte%20app/sensors_all__dp0a8e4y4u4i_large_2x_yavywe.png" alt="">
-                    </div>
-                    <div class="learn-more-box-title">
-                        <h1>A sophisticated sensor array</h1>
-                    </div>
-                    <div class="learn-more-box-para">
-                        <p>A pair of high-resolution cameras transmit over one billion pixels per second to the displays so you can see the world around you clearly. The system also helps deliver precise head and hand tracking and real-time 3D mapping, all while understanding your hand gestures from a wide range of positions.</p>
-                    </div>
-                </div>
-                <div class="learn-more-box">
-                    <div class="learn-more-box-image">
-                        <img class="image-learn-box" src="https://res.cloudinary.com/dr8jiwn4u/image/upload/v1706911984/svelte%20app/eye_tracking_on__ln11reqs6mi6_large_2x_iub7le.png" alt="">
-                    </div>
-                    <div class="learn-more-box-title">
-                        <h1>Responsive, precision eye tracking</h1>
-                    </div>
-                    <div class="learn-more-box-para">
-                        <p>A high-performance eye-tracking system of LEDs and infrared cameras projects invisible light patterns onto each eye. This advanced system provides ultraprecise input without your needing to hold any controllers, so you can accurately select elements just by looking at them.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="main-Wrapper">
+        <div class="main-wrapper-box">
+            <h1 class="main-wrapper-text">Crafted for Creativity: Innovate, Integrate, Ascend</h1>
         </div>
     </div>
 </section>
@@ -198,13 +198,13 @@
 <style>
     .main-Wrapper{
         background-color: #000000;
-        height: 500px;
+        height: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .main-wrapper-text {
-        color: #212529;
+        color: #5e5f60;
         font-size: 2.5em;
         font-weight: 700;
         text-align: center;
@@ -418,7 +418,7 @@
     .device-info-text{
         color: #ffffff;
         /* font-size: 2rem; */
-        font-family: 'Inter', sans-serif;
+        /* font-family: 'Inter', sans-serif; */
         font-weight: 700;
     }
     .learn-more{
@@ -466,7 +466,7 @@
         color: #86868b;
         max-width: 700px;
         text-align: center;
-        font-family: 'Inter', sans-serif;
+        /* font-family: 'Inter', sans-serif; */
         font-weight: 400;
     }
     .intro_new_product{

@@ -108,7 +108,6 @@ function addToCart() {
 		padding: 0;
 		background-color: #000000;
 		color: #ffffff;
-		font-family: Arial, sans-serif;
 	}
     .product-page {
         display: flex;
