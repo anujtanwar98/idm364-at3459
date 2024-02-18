@@ -3,6 +3,7 @@
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 	import mylogo from '$lib/images/mylogo.png';
+	import Icon from '@iconify/svelte';
 </script>
 
 <header>
@@ -16,9 +17,12 @@
 		  <a class="navbar-brand" href="/">
 			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
 		  </a>
-		  <a href="/cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i>
-		  </a>
+		  <a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 		  <div class="collapse navbar-collapse" id="navbarNav">
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn my_search_button" type="submit">Search</button>
+			  </form>		  
 			<ul class="navbar-nav">
 				<li class="nav-item" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 					<a class="nav-link active nav-link-color" href="/">Home</a>
@@ -64,7 +68,11 @@
 				</li>
 			</ul>
 			</div>
-			<a href="/cart"><i class="fas fa-shopping-cart fa-2x shopping-cart"></i></a>
+			<form class="d-flex me-4" role="search">
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn my_search_button" type="submit">Search</button>
+			</form>
+			<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 		</div>
 		</nav>
 </header>
@@ -192,5 +200,14 @@
 	}
 	.shopping-cart:hover {
 		color: var(--hover-color);
+	}
+	.my_search_button {
+		background-color: var(--hover-color);
+		border: none;
+		color: var(--white-color);
+	}
+	.my_search_button:hover {
+		background-color: var(--hover-color);
+		color: var(--black-color);
 	}
 </style>

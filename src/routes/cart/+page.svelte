@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Cart</title>
+	<meta name="description" content="Carts" />
+</svelte:head>
+
 <script>
 	import { derived } from 'svelte/store';
     import { cart } from '../stores/cartStore.js';

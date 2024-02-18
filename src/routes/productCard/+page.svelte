@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>{product.name} Details</title>
+	<meta name="description" content="Details of Products" />
+</svelte:head>
+
 <script>
     import { onMount } from 'svelte';
     import { doc, getDoc } from 'firebase/firestore';
