@@ -19,10 +19,11 @@
 		  </a>
 		  <a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 		  <div class="collapse navbar-collapse" id="navbarNav">
-			<form class="d-flex" role="search">
+			<!-- <form class="d-flex" role="search">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn my_search_button" type="submit">Search</button>
-			  </form>		  
+			</form> -->
+			<a href="/search"><Icon class="fa-2x search-items" icon="tabler:search"  style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 			<ul class="navbar-nav">
 				<li class="nav-item" aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 					<a class="nav-link active nav-link-color" href="/">Home</a>
@@ -68,10 +69,11 @@
 				</li>
 			</ul>
 			</div>
-			<form class="d-flex me-4" role="search">
+			<!-- <form class="d-flex me-4" role="search">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn my_search_button" type="submit">Search</button>
-			</form>
+			</form> -->
+			<a href="/search"><Icon class="fa-2x search-items" icon="tabler:search"  style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 			<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 		</div>
 		</nav>
@@ -209,5 +211,14 @@
 	.my_search_button:hover {
 		background-color: var(--hover-color);
 		color: var(--black-color);
+	}
+	.search-items {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		color: var(--white-color);
+	}
+	.search-items:hover {
+		color: var(--hover-color);
 	}
 </style>

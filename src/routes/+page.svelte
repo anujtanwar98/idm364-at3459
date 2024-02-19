@@ -131,7 +131,11 @@
 </div>
 
 <div class="blank_row height-scrolly-box w-100 scrolly-box-item-align scrolly-box-flex scrolly-box-justify ">
-  View All Products
+  <div class="view_all_products">
+    <a class="view_all_products_link" href="/allProducts">
+      <button class="view_all_products_button">View All Products</button>
+    </a>
+  </div>
 </div>
 
 <style>
@@ -249,9 +253,9 @@
   }
 
   .blank_row {
-    background:   url(https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705368083/svelte%20app/e-commerce_eaqe0m.jpg) no-repeat;
+    /* background:   url(https://res.cloudinary.com/dr8jiwn4u/image/upload/v1705368083/svelte%20app/e-commerce_eaqe0m.jpg) no-repeat; */
+    background-color: #000;
     margin: 0;
-    font-size: 3rem;
     position: relative;
     z-index: 1;
     padding: 20px 0;
@@ -292,6 +296,29 @@
     border-radius: 5px;
   }
   .shop_now_button:hover {
+    background-color: #fff;
+    color: #212529;
+  }
+  .view_all_products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .view_all_products_link {
+    text-decoration: none;
+  }
+  .view_all_products_button {
+    padding: 10px 20px;
+    background-color: #212529;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.25rem;
+  }
+  .view_all_products_button:hover {
     background-color: #fff;
     color: #212529;
   }
