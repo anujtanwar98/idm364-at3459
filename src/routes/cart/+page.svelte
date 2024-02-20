@@ -27,6 +27,17 @@
 
     const finalAmount = derived([total, tax], ([$total, $tax]) => $total + $tax);
 
+    function updateQuantity(itemId, itemColor, newQuantity) {
+        cart.update(items => {
+            return items.map(item => {
+                if (item.id === itemId && item.color === itemColor) {
+                    return { ...item, quantity: newQuantity };
+                }
+                return item;
+            });
+        });
+    }
+
 </script>
 
 {#if $cart.length === 0}
@@ -50,7 +61,15 @@
         </div>
         <div class="main_price">
             <!-- <p>{formatPrice(item.price)}</p> -->
-            <p>{item.quantity} x {formatPrice(item.price)}</p>
+            <!-- <p>{item.quantity} x {formatPrice(item.price)}</p> -->
+            <p>
+                <select class="quantity_select" on:change="{(e) => updateQuantity(item.id, item.color, parseInt(e.target.value, 10))}">
+                    {#each Array(10).fill().map((_, i) => i + 1) as quantity}
+                        <option value="{quantity}" selected={quantity === item.quantity}>{quantity}</option>
+                    {/each}
+                </select>
+                 x {formatPrice(item.price)}
+            </p>
         </div>
         <div class="main_color">
             <p>Color: {item.color}</p>
@@ -61,6 +80,13 @@
         <div class="remove_button">
             <button on:click={() => removeFromCart(item.id, item.color)}>X</button>
         </div>
+        <!-- <div class="main_quantity">
+            <select on:change="{(e) => updateQuantity(item.id, item.color, parseInt(e.target.value, 10))}">
+                {#each Array(10).fill().map((_, i) => i + 1) as quantity}
+                    <option value="{quantity}" selected={quantity === item.quantity}>{quantity}</option>
+                {/each}
+            </select>
+        </div> -->
     </div>
 </div>
 {/each}
@@ -215,5 +241,21 @@
     }
     .explore_products_button {
         transition: background-color 0.5s ease;
+    }
+    .quantity_select {
+        -webkit-appearance: menulist;
+        -moz-appearance: menulist;
+        appearance: menulist;
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        font-size: inherit;
+        padding: 5px;
+        margin-right: 5px;
+        /* font-size: 1rem; */
+        height: auto;
+    }
+    .quantity_select:focus {
+        outline: none;
     }
 </style>
