@@ -92,7 +92,7 @@
 
 
 <h1 class="Add_title">Add Test Products</h1>
-<form on:submit={handleSubmit}>
+<!-- <form on:submit={handleSubmit}>
     <label for="name">Name:</label>
     <input type="text" bind:value={name} placeholder="Product Name" required />
 
@@ -124,7 +124,7 @@
     {#if submissionMessage}
         <p>{submissionMessage}</p>
     {/if}
-</form>
+</form> -->
 
 
 <style>

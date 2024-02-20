@@ -68,11 +68,11 @@
 				<h2 class="product_price">{formatPrice(product.price)}</h2>
 			</div>
             <div>
-				<a class="edit_link" href={`/editDetail?id=${product.id}`}>
+				<!-- <a class="edit_link" href={`/editDetail?id=${product.id}`}> -->
                 <!-- <button on:click={() => startEditing(product)}>Edit</button> -->
 				<p>Edit</p>	
-				</a>
-                <button class="delete_link" on:click={() => deleteProduct(product.id)}>Delete</button>
+				<!-- </a> -->
+                <!-- <button class="delete_link" on:click={() => deleteProduct(product.id)}>Delete</button> -->
             </div>
             <!-- {#if editProduct && editProduct.id === product.id}
                 <form on:submit|preventDefault={saveChanges}>
