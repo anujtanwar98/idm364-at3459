@@ -36,7 +36,7 @@
                 <div class="intro_new_product">
                     <div class="intro_new_product_wrapper">
                         <div class="intro_new_product_text">
-                            <h1>Introducing the Vision Pro</h1>
+                            <h1 class="intro_new_product_text_title">Introducing the Vision Pro</h1>
                             <p class="subtitle">
                                 The Vision Pro is a new era of spatial computing. It is a wearable device that allows you to interact with the digital world in the same way you interact with the physical world. It is a new way to experience the world around you, and it is the future of computing.
                             </p>
@@ -243,7 +243,7 @@
         font-size: 3.4em;
     }
     .subtitle{
-        font-size: 1.25em;
+        font-size: 1.25rem;
         opacity: 0.65;
     }
     .card-block{
@@ -367,6 +367,15 @@
         .main-wrapper-text {
             font-size: 1.5em;
         }
+        .device-info-text {
+            font-size: 1.5rem;
+        }
+        .intro_new_product {
+            opacity: 0;
+        }
+        .intro_new_product_wrapper {
+            display: none;
+        }
     }
     @media (max-width: 600px) {
         .col-2 {
@@ -374,6 +383,14 @@
             margin-right: 10px;
             width: 17%;
         }
+        .device-info-text {
+            font-size: 1.25rem;
+        }
+    }
+    .intro_new_product_text_title{
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ffffff;
     }
     .info-devices{
         display: flex;
@@ -417,7 +434,7 @@
     }
     .device-info-text{
         color: #ffffff;
-        /* font-size: 2rem; */
+        font-size: 2.25rem;
         /* font-family: 'Inter', sans-serif; */
         font-weight: 700;
     }

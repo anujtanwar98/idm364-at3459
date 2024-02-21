@@ -117,12 +117,17 @@
         flex-direction: row;
         gap: 20px;
         padding: 20px;
-        max-width: 1000px;
+        max-width: 800px;
         margin: 0 auto;
         width: 100%;
         background-color: rgb(57, 57, 57);
         margin-top: 20px;
         border-radius: 20px;
+    }
+    @media (max-width: 500px) {
+        .main_wrapper {
+            max-width: 350px;
+        }
     }
     .main_image_box {
         width: 50%;
@@ -184,16 +189,17 @@
     } */
     .remove_button {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: -5px;
+        right: -5px;
     }
     .remove_button button {
-        padding: 10px 20px;
+        /* padding: 10px 20px; */
         border: none;
         border-radius: 5px;
         background-color: #ff4747;
         color: #ffffff;
         cursor: pointer;
+        font-size: 16px;
     }
     .remove_button button:hover {
         background-color: #ff0000;
