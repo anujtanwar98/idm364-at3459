@@ -56,6 +56,7 @@
         mainImage = productImages[0];
     }
 }
+let isAddedToCart = false;
 
 function addToCart() {
     cart.update(items => {
@@ -77,6 +78,11 @@ function addToCart() {
             return [...items, { ...product, quantity: 1, ...variantDetails }];
         }
     });
+    isAddedToCart = true;
+
+    setTimeout(() => {
+        isAddedToCart = false; // Reset after 2 seconds
+    }, 2000);
 }
 
 
@@ -104,6 +110,11 @@ function addToCart() {
             {/each}
         </div>
         <button class="add_to_cart_button" on:click="{addToCart}">Add to Cart</button>
+        {#if isAddedToCart}
+            <div class="added-to-cart-message">
+                Added to Cart
+            </div>
+        {/if}
     </div>
 </div>
 
