@@ -109,10 +109,10 @@ function addToCart() {
                 <button class="color_select_button" on:click={() => selectVariant(index)}>{color}</button>
             {/each}
         </div>
-        <button class="add_to_cart_button" on:click="{addToCart}">Add to Cart</button>
+        <button class="add_to_cart_button" on:click="{addToCart}">Add to Bag</button>
         {#if isAddedToCart}
             <div class="added-to-cart-message">
-                Added to Cart
+                Added to bag!
             </div>
         {/if}
     </div>

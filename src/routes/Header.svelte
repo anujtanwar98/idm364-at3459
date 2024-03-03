@@ -4,6 +4,7 @@
 	import github from '$lib/images/github.svg';
 	import mylogo from '$lib/images/mylogo.png';
 	import Icon from '@iconify/svelte';
+	import { cart } from './stores/cartStore.js';
 </script>
 
 <header>
@@ -17,7 +18,12 @@
 		  <a class="navbar-brand" href="/">
 			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
 		  </a>
-		  <a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+		  <div class="cart-icon-container">
+			<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+			{#if $cart.length > 0}
+				<span class="cart-count">{ $cart.reduce((total, item) => total + item.quantity, 0) }</span>
+			{/if}
+		  </div>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 			<!-- <form class="d-flex" role="search">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -74,7 +80,12 @@
 				<button class="btn my_search_button" type="submit">Search</button>
 			</form> -->
 			<a href="/search"><Icon class="fa-2x search-items" icon="tabler:search"  style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
-			<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="mdi:cart" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+			<div class="cart-icon-container">
+				<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+			{#if $cart.length > 0}
+				<span class="cart-count">{ $cart.reduce((total, item) => total + item.quantity, 0) }</span>
+			{/if}
+			</div>
 		</div>
 		</nav>
 </header>
@@ -220,5 +231,27 @@
 	}
 	.search-items:hover {
 		color: var(--hover-color);
+	}
+	.cart-icon-container {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		user-select: none;
+	}
+	.cart-count {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #000000;
+		padding: 4px 6px;
+		font-size: 0.75em;
+		font-weight: bold;
+		min-width: 20px;
+		height: 20px;
+		line-height: 20px;
+		text-align: center;
+		user-select: none;
+		pointer-events: none;
 	}
 </style>
