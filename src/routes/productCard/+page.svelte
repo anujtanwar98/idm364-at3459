@@ -71,9 +71,14 @@ function addToCart() {
         };
 
         if (existingItemIndex !== -1) {
-            return items.map((item, index) =>
-                index === existingItemIndex ? { ...item, quantity: item.quantity + 1, ...variantDetails } : item
-            );
+            if (items[existingItemIndex].quantity >= 10) {
+                alert("User is limited to 10 items per product.");
+                return items;
+            } else {
+                return items.map((item, index) =>
+                    index === existingItemIndex ? { ...item, quantity: item.quantity + 1, ...variantDetails } : item
+                );
+            }
         } else {
             return [...items, { ...product, quantity: 1, ...variantDetails }];
         }
