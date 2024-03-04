@@ -4,8 +4,11 @@
 </svelte:head>
 
 <script>
-	import { derived } from 'svelte/store';
+	import { derived, writable } from 'svelte/store';
     import { cart } from '../stores/cartStore.js';
+
+    let orderPlaced = writable(false);
+    let orderNumber = writable("");
 
     function formatPrice(price) {
         const numericPrice = parseInt(price, 10);
@@ -38,7 +41,26 @@
         });
     }
 
+    function checkout() {
+        const randomNumber = Math.floor(1000 + Math.random() * 9000);
+        orderNumber.set(`#${randomNumber}`);
+        cart.set([]);
+
+        orderPlaced.set(true);
+
+        setTimeout(() => {
+            orderPlaced.set(false);
+        }, 5000);
+    }
+
 </script>
+
+{#if $orderPlaced}
+<div class="order_confirmation">
+    <h2>Your order has been placed successfully!!😊</h2>
+    <p>Your order number is: {$orderNumber}</p>
+</div>
+{/if}
 
 {#if $cart.length === 0}
     <div class="no_items_message">
@@ -99,7 +121,11 @@
     </div>
     <div class="final_amount">
         <p>Total: {$finalAmount ? formatPrice($finalAmount) : '$0.00'}</p>
+        <button class="checkout_button" on:click={checkout}>Checkout</button>
     </div>
+    <!-- <div class="total_section">
+        <button class="checkout_button" on:click={checkout}>Checkout</button>
+    </div> -->
 </div>
 {/if}
 
@@ -263,5 +289,33 @@
     }
     .quantity_select:focus {
         outline: none;
+    }
+    .checkout_button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #E74151;
+        color: #ffffff;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    .checkout_button:hover {
+        background-color: #7c7c7c;
+        color: #000000;
+    }
+    .checkout_button:active {
+	    transform: scale(0.95);
+    }
+    .order_confirmation {
+        padding: 20px;
+        background-color: #E74151;
+        color: black;
+        text-align: center;
+        border-radius: 20px;
+        max-width: 400px;
+        margin: 20px auto;
+    }
+    .order_confirmation h2 {
+        font-size: 1.25rem;
     }
 </style>

@@ -5,6 +5,7 @@
 	import mylogo from '$lib/images/mylogo.png';
 	import Icon from '@iconify/svelte';
 	import { cart } from './stores/cartStore.js';
+	import Shopbag from '$lib/images/shopbag.svg';
 </script>
 
 <header>
@@ -19,7 +20,10 @@
 			<img src={mylogo} alt="Logo" width="60" height="me-auto" class="d-inline-block align-text-center">
 		  </a>
 		  <div class="cart-icon-container">
-			<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+			<a href="/cart">
+				<!-- <Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /> -->
+				<img src={Shopbag} alt="Shopbag" width="30" height="30" class="fas fa-shopping-cart fa-2x shopping-cart" />
+			</a>
 			{#if $cart.length > 0}
 				<span class="cart-count">{ $cart.reduce((total, item) => total + item.quantity, 0) }</span>
 			{/if}
@@ -79,9 +83,12 @@
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn my_search_button" type="submit">Search</button>
 			</form> -->
-			<a href="/search"><Icon class="fa-2x search-items" icon="tabler:search"  style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+			<a href="/search"><Icon class="fa-2x search-items me-2" icon="tabler:search"  style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
 			<div class="cart-icon-container">
-				<a href="/cart"><Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /></a>
+				<a href="/cart">
+					<!-- <Icon class="fas fa-shopping-cart fa-2x shopping-cart" icon="iconamoon:shopping-bag-fill" style="color: white" onmouseover="this.style.color='#E74151'" onmouseout="this.style.color='white'" /> -->
+					<img src={Shopbag} alt="Shopbag" width="30" height="30" class="fas fa-shopping-cart fa-2x shopping-cart" />
+				</a>
 			{#if $cart.length > 0}
 				<span class="cart-count">{ $cart.reduce((total, item) => total + item.quantity, 0) }</span>
 			{/if}
