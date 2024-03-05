@@ -87,7 +87,7 @@ function addToCart() {
 
     setTimeout(() => {
         isAddedToCart = false; // Reset after 2 seconds
-    }, 2000);
+    }, 1000);
 }
 
 
@@ -118,6 +118,7 @@ function addToCart() {
         {#if isAddedToCart}
             <div class="added-to-cart-message">
                 Added to bag!
+                <div class="toast-timer"></div>
             </div>
         {/if}
     </div>
@@ -267,6 +268,37 @@ function addToCart() {
         }
         .product-details {
             width: 100%;
+        }
+    }
+    .added-to-cart-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #323232;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        font-size: 1rem;
+        text-align: center;
+        width: 200px;
+    }
+    .toast-timer {
+        height: 5px;
+        background-color: #ff5a6e;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 50px;
+        animation: countdown 1s linear forwards;
+    }
+    @keyframes countdown {
+        from {
+            width: 100%;
+        }
+        to {
+            width: 0%;
         }
     }
 </style>

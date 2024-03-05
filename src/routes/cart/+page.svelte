@@ -50,7 +50,7 @@
 
         setTimeout(() => {
             orderPlaced.set(false);
-        }, 5000);
+        }, 3000);
     }
 
 </script>
@@ -59,6 +59,7 @@
 <div class="order_confirmation">
     <h2>Your order has been placed successfully!!😊</h2>
     <p>Your order number is: {$orderNumber}</p>
+    <div class="toast-timer"></div>
 </div>
 {/if}
 
@@ -307,15 +308,37 @@
 	    transform: scale(0.95);
     }
     .order_confirmation {
-        padding: 20px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: #E74151;
-        color: black;
-        text-align: center;
+        color: #000000;
+        padding: 10px 20px;
         border-radius: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        font-size: 1rem;
+        text-align: center;
         max-width: 400px;
-        margin: 20px auto;
     }
     .order_confirmation h2 {
         font-size: 1.25rem;
+    }
+    .toast-timer {
+        height: 5px;
+        background-color: #000000;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 50px;
+        animation: countdown 3s linear forwards;
+    }
+    @keyframes countdown {
+        from {
+            width: 100%;
+        }
+        to {
+            width: 0%;
+        }
     }
 </style>
