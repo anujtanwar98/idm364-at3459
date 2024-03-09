@@ -338,7 +338,7 @@
         text-align: center;
     }
     .card-title{
-        font-size: 1rem;
+        font-size: 0.75rem;
         color: #ff8787;
     }
     .col-2 {
