@@ -330,6 +330,8 @@
         text-align: center;
         width: 140px;
         height: 140px;
+        display: flex;
+        justify-content: center;
     }
     .text-box {
         padding: 10px;
@@ -341,6 +343,18 @@
     }
     .col-2 {
        width: 15%;
+    }
+    @media (max-width: 1000px) {
+        .col-2 {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    }
+    @media (max-width: 470px) {
+        .col-2 {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
     }
     @media (max-width: 850px) {
         .col-2 {
@@ -385,6 +399,9 @@
         }
         .device-info-text {
             font-size: 1.25rem;
+        }
+        .learn-more-box-title h1{
+            font-size: 2rem;
         }
     }
     .intro_new_product_text_title{
