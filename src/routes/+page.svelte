@@ -10,7 +10,15 @@
   // import ScrollMagic from 'scrollmagic';
 
   let products = [];
-  let bgColors = ['#FFD700', '#FF5733', '#33FF57', '#3357FF', '#FF33F4', '#00FFFF', '#FF4500', '#4B0082', '#FA8072'];
+  let bgColors = ['#FFD700', '#33FF57', '#3357FF', '#FF33F4', '#00FFFF', '#4B0082', '#FA8072'];
+
+  function getUniqueColor() {
+    if (bgColors.length > 0) {
+      return bgColors.shift();
+    } else {
+      return '#FFFFFF';
+    }
+  }
 
   onMount(async () => {
     const specificProductNames = ['Rabbit R1', 'Apple Vision Pro', 'Apple Watch Ultra 2', 'Humane Ai Pin', 'Meta Quest 3'];
@@ -27,7 +35,8 @@
         productsData.push({
           id: doc.id,
           name: data.name,
-          imageUrl: firstImageUrl
+          imageUrl: firstImageUrl,
+          bgColor: getUniqueColor()
         });
       });
     }
@@ -80,7 +89,7 @@
             </div>
           </div>
         </div>
-        <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box" style="background-color: {bgColors[Math.floor(Math.random() * bgColors.length)]}">
+        <div class="Image width-scrolly-box scrolly-box-flex scrolly-box-justify scrolly-box-item-align height-scrolly-box" style="background-color: {product.bgColor}">
           <img src={product.imageUrl} alt={product.name}>
         </div>
       </div>
@@ -145,8 +154,6 @@
     box-sizing: border-box;
   
   }
-
-
   .flex-wrap {
     flex-wrap: wrap;
   }
