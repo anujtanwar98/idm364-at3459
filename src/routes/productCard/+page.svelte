@@ -86,7 +86,7 @@ function addToCart() {
     isAddedToCart = true;
 
     setTimeout(() => {
-        isAddedToCart = false; // Reset after 2 seconds
+        isAddedToCart = false;
     }, 1000);
 }
 
@@ -170,7 +170,6 @@ function addToCart() {
     }
     .product-images {
         display: flex;
-        /* flex-direction: row; */
         flex-wrap: wrap;
         gap: 20px;
     }
@@ -295,10 +294,10 @@ function addToCart() {
     }
     @keyframes countdown {
         from {
-            width: 0%;
+            width: 100%;
         }
         to {
-            width: 100%;
+            width: 0%;
         }
     }
 </style>

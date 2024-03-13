@@ -83,8 +83,6 @@
             <h2>{item.name}</h2>
         </div>
         <div class="main_price">
-            <!-- <p>{formatPrice(item.price)}</p> -->
-            <!-- <p>{item.quantity} x {formatPrice(item.price)}</p> -->
             <p>
                 <select class="quantity_select" on:change="{(e) => updateQuantity(item.id, item.color, parseInt(e.target.value, 10))}">
                     {#each Array(10).fill().map((_, i) => i + 1) as quantity}
@@ -97,19 +95,9 @@
         <div class="main_color">
             <p>Color: {item.color}</p>
         </div>
-        <!-- <div class="main_quantity">
-            <p>Quantity: 1</p>
-        </div> -->
         <div class="remove_button">
             <button on:click={() => removeFromCart(item.id, item.color)}>X</button>
         </div>
-        <!-- <div class="main_quantity">
-            <select on:change="{(e) => updateQuantity(item.id, item.color, parseInt(e.target.value, 10))}">
-                {#each Array(10).fill().map((_, i) => i + 1) as quantity}
-                    <option value="{quantity}" selected={quantity === item.quantity}>{quantity}</option>
-                {/each}
-            </select>
-        </div> -->
     </div>
 </div>
 {/each}
@@ -124,9 +112,6 @@
         <p>Total: {$finalAmount ? formatPrice($finalAmount) : '$0.00'}</p>
         <button class="checkout_button" on:click={checkout}>Checkout</button>
     </div>
-    <!-- <div class="total_section">
-        <button class="checkout_button" on:click={checkout}>Checkout</button>
-    </div> -->
 </div>
 {/if}
 
@@ -163,7 +148,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* background-color: #ffffff; */
     }
     .main_image_box img {
         width: 100%;
@@ -207,20 +191,12 @@
         justify-content: center;
         align-items: center;
     }
-    /* .remove_button {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-top: 10px;
-    } */
     .remove_button {
         position: absolute;
         top: -5px;
         right: -5px;
     }
     .remove_button button {
-        /* padding: 10px 20px; */
         border: none;
         border-radius: 5px;
         background-color: #ff4747;
@@ -335,10 +311,10 @@
     }
     @keyframes countdown {
         from {
-            width: 0%;
+            width: 100%;
         }
         to {
-            width: 100%;
+            width: 0%;
         }
     }
 </style>
