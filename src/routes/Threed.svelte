@@ -93,7 +93,7 @@
       controls.enablePan = false;
     } else {
       // Enable zoom and other controls for non-mobile devices
-      controls.enableZoom = true;
+      controls.enableZoom = false;
       controls.enableRotate = true;
       controls.enablePan = true;
     }
