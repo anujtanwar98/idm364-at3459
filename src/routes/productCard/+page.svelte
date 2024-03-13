@@ -294,10 +294,10 @@ function addToCart() {
     }
     @keyframes countdown {
         from {
-            width: 100%;
+            width: 0%;
         }
         to {
-            width: 0%;
+            width: 100%;
         }
     }
 </style>
