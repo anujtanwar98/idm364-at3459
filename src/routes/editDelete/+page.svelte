@@ -33,34 +33,15 @@
         formattedPrice = formattedPrice.slice(0, -2) + "." + formattedPrice.slice(-2);
         return `$${formattedPrice}`;
     }
-
-    // function startEditing(product) {
-    //     editProduct = { ...product }; // Clone the product for editing
-    // }
-
-    // async function saveChanges() {
-    //     const productRef = doc(db, "products", editProduct.id);
-    //     await updateDoc(productRef, {
-    //         ...editProduct // Update all product fields
-    //     });
-    //     await fetchProducts(); // Refresh the products list
-    //     editProduct = null; // Clear the editing state
-    // }
-
-    // function cancelEditing() {
-    //     editProduct = null; // Exit editing mode
-    // }
 </script>
 
 {#if deleteMessage}
     <p class="message">{deleteMessage}</p>
 {/if}
-
+<h1 class="edit_title">Edit Details</h1>
 <div class="products">
     {#each products as product}
 		<div class="main_box">
-        <!-- <div class="product"> -->
-            <!-- <h2>{product.name} - ${product.price}</h2> -->
 			<div class="title_box">
 				<h2 class="product_title">{product.name}</h2>
 			</div>
@@ -68,20 +49,11 @@
 				<h2 class="product_price">{formatPrice(product.price)}</h2>
 			</div>
             <div>
-				<!-- <a class="edit_link" href={`/editDetail?id=${product.id}`}> -->
-                <!-- <button on:click={() => startEditing(product)}>Edit</button> -->
+				<a class="edit_link" href={`/editDetail?id=${product.id}`}>
 				<p>Edit</p>	
-				<!-- </a> -->
-                <!-- <button class="delete_link" on:click={() => deleteProduct(product.id)}>Delete</button> -->
+				</a>
+                <button class="delete_link" on:click={() => deleteProduct(product.id)}>Delete</button>
             </div>
-            <!-- {#if editProduct && editProduct.id === product.id}
-                <form on:submit|preventDefault={saveChanges}>
-                    <input type="text" bind:value={editProduct.name} />
-                    <input type="number" bind:value={editProduct.price} />
-                    <button type="submit">Save Changes</button>
-                    <button type="button" on:click={cancelEditing}>Cancel</button>
-                </form>
-            {/if} -->
         </div>
     {/each}
 </div>
@@ -93,6 +65,11 @@
 		background-color: #000000;
 		color: #ffffff;
 	}
+	.edit_title {
+        text-align: center;
+        color: #E74151;
+        padding-top: 20px;
+    }
 	.main_box {
 		display: flex;
 		justify-content: space-between;

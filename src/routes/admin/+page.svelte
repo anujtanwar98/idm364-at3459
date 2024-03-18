@@ -9,10 +9,9 @@
     import { db } from '../../firebase.js'
 
     let name, price;
-    let variants = []; // To store multiple color variants and their image URLs
+    let variants = [];
     let submissionMessage = '';
 
-    // Function to check if a string is a valid URL
     const isValidUrl = (url) => {
         try {
             new URL(url);
@@ -22,25 +21,23 @@
         }
     };
 
-    // Sanitize text inputs
     const sanitizeText = (text) => text.trim().replace(/<\/?[^>]+(>|$)/g, "");
-    // Sanitize price to ensure it is a valid number
     const sanitizePrice = (price) => {
         const sanitizedPrice = parseFloat(price);
         return !isNaN(sanitizedPrice) && isFinite(price) ? sanitizedPrice : 0;
     };
 
     const sanitizeImageUrl = (url) => {
-        if (!isValidUrl(url)) return ''; // Return empty if not a valid URL
+        if (!isValidUrl(url)) return '';
 
         const parsedUrl = new URL(url);
-        if (!['http:', 'https:'].includes(parsedUrl.protocol)) return ''; // Ensure valid protocol
+        if (!['http:', 'https:'].includes(parsedUrl.protocol)) return '';
 
         const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
         const extension = parsedUrl.pathname.split('.').pop().toLowerCase();
-        if (!validExtensions.includes(`.${extension}`)) return ''; // Check extension
+        if (!validExtensions.includes(`.${extension}`)) return '';
 
-        return url; // Return the original URL if all checks pass
+        return url;
     };
 
     const addVariant = () => {
@@ -56,7 +53,6 @@
 
     const handleSubmit = async e => {
         e.preventDefault();
-        // Sanitize inputs
         const sanitizedPrice = sanitizePrice(price);
         const sanitizedProductName = sanitizeText(name);
         const sanitizedVariants = variants.map(variant => ({
@@ -70,29 +66,25 @@
             variants: sanitizedVariants,
         });
 
-        // Set the submission message
         submissionMessage = "Product added successfully!";
 
-        // Clear the input fields
         name = '';
         price = '';
         variants = [];
 
-        // Optional: Hide the message after a few seconds
         setTimeout(() => {
             submissionMessage = '';
-        }, 3000); // Hide after 3 seconds
+        }, 3000);
     }
 
-    // Initialize with one variant field
     onMount(() => {
         addVariant();
     });
 </script>
 
 
-<h1 class="Add_title">Add Test Products</h1>
-<!-- <form on:submit={handleSubmit}>
+<h1 class="Add_title">Add Products</h1>
+<form on:submit={handleSubmit}>
     <label for="name">Name:</label>
     <input type="text" bind:value={name} placeholder="Product Name" required />
 
@@ -124,7 +116,7 @@
     {#if submissionMessage}
         <p>{submissionMessage}</p>
     {/if}
-</form> -->
+</form>
 
 
 <style>
