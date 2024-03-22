@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>404 Error</title>
+	<meta name="description" content="error page" />
+</svelte:head>
 <script>
     import GLTFModel from './ThreedError.svelte';
 </script>
