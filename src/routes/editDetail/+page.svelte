@@ -78,16 +78,18 @@
 
 <h1 class="Add_title">Edit Product Details</h1>
 
-<form on:submit={updateProduct}>
+<!-- <form on:submit={updateProduct}>
     <label for="name">Name:</label>
     <input type="text" bind:value={product.name} placeholder="Product Name" required />
 
     <label for="price">Price:</label>
     <input type="number" bind:value={product.price} placeholder="Price only numbers" required />
 
-    {#each product.variants as variant, index}
+    {#each product.variants as variant, index} -->
+
         <!-- <div class="variant"> -->
-            <label for={`color-${index}`}>Color {index + 1}:</label>
+
+            <!-- <label for={`color-${index}`}>Color {index + 1}:</label>
             <input type="text" bind:value={variant.color} placeholder="Color" required />
 
             {#each variant.imageUrls as imageUrl, i}
@@ -95,13 +97,19 @@
                 <input type="text" bind:value={variant.imageUrls[i]} placeholder="Image URL" required />
             {/each}
 
-            <button class="remove_variant_button" type="button" on:click={() => removeVariant(index)}>Remove Variant</button>
+            <button class="remove_variant_button" type="button" on:click={() => removeVariant(index)}>Remove Variant</button> -->
+
         <!-- </div> -->
-    {/each}
+
+    <!-- {/each}
 
     <button class="add_variant_button" type="button" on:click={addVariant}>Add Variant</button>
     <button type="submit">Save Changes</button>
-</form>
+</form> -->
+
+<h2 class="hiddenTitle">
+    Access hidden for security reasons
+</h2>
 
 <a class="back_button" href="/editDelete">
     <p class="back_button_text">Back to products list</p>
@@ -165,5 +173,9 @@
         background-color: #ffffff;
         color: #E74151;
         cursor: pointer;
+    }
+    .hiddenTitle {
+        font-size: 1.5rem;
+        text-align: center;
     }
 </style>

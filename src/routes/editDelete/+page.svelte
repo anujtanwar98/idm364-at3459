@@ -39,7 +39,7 @@
     <p class="message">{deleteMessage}</p>
 {/if}
 <h1 class="edit_title">Edit Details</h1>
-<div class="products">
+<!-- <div class="products">
     {#each products as product}
 		<div class="main_box">
 			<div class="title_box">
@@ -56,7 +56,10 @@
             </div>
         </div>
     {/each}
-</div>
+</div> -->
+<h2 class="hiddenTitle">
+    Access hidden for security reasons
+</h2>
 
 <style>
 	:global(body) {
@@ -129,5 +132,9 @@
 		margin: 0;
 		font-size: 1.25rem;
 		max-width: 100px;
+	}
+	.hiddenTitle {
+		font-size: 1.5rem;
+		text-align: center;
 	}
 </style>
